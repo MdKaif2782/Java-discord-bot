@@ -22,7 +22,7 @@ public class leadboard implements MessageCreateListener {
             JSONParser parser = new JSONParser();
             Object obj = null;
             try {
-                obj = parser.parse(new FileReader("bankk.json"));
+                obj = parser.parse(new FileReader("src\\main\\resources\\bankk.json"));
                 JSONObject jsonObject = (JSONObject) obj;
                 JSONObject users = (JSONObject) jsonObject.get(ServerID);
                 String json = users.toJSONString();

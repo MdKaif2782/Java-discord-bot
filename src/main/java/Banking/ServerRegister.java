@@ -24,7 +24,7 @@ public class ServerRegister implements ServerJoinListener {
             JSONParser parser = new JSONParser();
             Object obj = null;
             try {
-                obj = parser.parse(new FileReader("bankk.json"));
+                obj = parser.parse(new FileReader("src\\main\\resources\\bankk.json"));
                 JSONObject ServerID =  (JSONObject) obj;
 
                 JSONObject usersID = new JSONObject();
@@ -32,7 +32,7 @@ public class ServerRegister implements ServerJoinListener {
                 usersID.put("default",69);
                 ServerID.put(serverID,usersID);
 
-                FileWriter file = new FileWriter("bankk.json", false);
+                FileWriter file = new FileWriter("src\\main\\resources\\bankk.json", false);
                 file.write(ServerID.toJSONString());
                 file.flush();
 

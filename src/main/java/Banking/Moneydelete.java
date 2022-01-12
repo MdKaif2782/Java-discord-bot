@@ -15,7 +15,7 @@ public class Moneydelete implements MessageDeleteListener {
         JSONParser parser = new JSONParser();
         Object obj = null;
         try {
-            obj = parser.parse(new FileReader("bankk.json"));
+            obj = parser.parse(new FileReader("src\\main\\resources\\bankk.json"));
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ParseException e) {

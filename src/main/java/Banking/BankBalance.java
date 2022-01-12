@@ -29,7 +29,7 @@ public class BankBalance implements MessageCreateListener {
             JSONParser parser = new JSONParser();
             Object obj = null;
             try {
-                obj = parser.parse(new FileReader("bankk.json"));
+                obj = parser.parse(new FileReader("src\\main\\resources\\bankk.json"));
             } catch (IOException | ParseException e) {
                 event.getChannel().sendMessage("IOException / Parse Error");
                 e.printStackTrace();

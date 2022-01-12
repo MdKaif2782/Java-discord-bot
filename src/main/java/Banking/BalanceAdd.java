@@ -27,7 +27,7 @@ public class BalanceAdd implements MessageCreateListener {
         JSONParser parser = new JSONParser();
         Object obj = null;
         try {
-            obj = parser.parse(new FileReader("bankk.json"));
+            obj = parser.parse(new FileReader("src\\main\\resources\\bankk.json"));
             JSONObject jsonObject = (JSONObject) obj;
             JSONObject users = (JSONObject) jsonObject.get(ServerID);
 
@@ -39,7 +39,7 @@ public class BalanceAdd implements MessageCreateListener {
                 prevBal = prevBal + 3;
                 users.replace(name, prevBal);
 
-                FileWriter file = new FileWriter("bankk.json", false);
+                FileWriter file = new FileWriter("src\\main\\resources\\bankk.json", false);
                 file.write(jsonObject.toJSONString());
                 file.flush();
 
