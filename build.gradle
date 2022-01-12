@@ -31,7 +31,7 @@ build.mustRunAfter test
 
 jar {
     manifest{
-        attributes 'Class-Path': '/libs/JavaCordBot-1.0.jar', 'Main-Class': 'JavaCordBot'
+        attributes 'Class-Path': '/libs/JavaCordBot-1.0-all.jar', 'Main-Class': 'JavaCordBot'
     }
 }
 
