@@ -22,16 +22,18 @@ import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
 import org.javacord.api.entity.activity.ActivityType;
 import org.javacord.api.entity.user.UserStatus;
-import org.json.simple.parser.ParseException;
 
-import java.io.IOException;
 
 public class JavaCordBot {
 
 
     public static void main(String[] args) {
+
+        String token1 = "OTI0NjA4NDc0NDA5NzQyMzU3.YchCvg";
+        String token2 = ".gUW7CdHiQ3o8S8oen-KNaC3mTz4";
+
         DiscordApi Bot = new DiscordApiBuilder()
-        .setToken(System.getenv("VAR1"))
+        .setToken(token1+token2)
         .login().join();
 
         Bot.updateActivity(ActivityType.LISTENING, "helicopter helicopter");
@@ -47,9 +49,7 @@ public class JavaCordBot {
         Bot.addListener(new gay());
         Bot.addListener(new urmom());
         Bot.addListener(new msgdelete());
-//        Bot.addListener(new yomama());
-//        Bot.addListener(new yodaddy());
-//        Bot.addListener(new roast());
+
         Bot.addListener(new BankHelp());
         Bot.addListener(new getMentionTag());
         Bot.addListener(new dlt());
