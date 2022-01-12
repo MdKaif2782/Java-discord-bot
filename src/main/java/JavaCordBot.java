@@ -47,9 +47,9 @@ public class JavaCordBot {
         Bot.addListener(new gay());
         Bot.addListener(new urmom());
         Bot.addListener(new msgdelete());
-        Bot.addListener(new yomama());
-        Bot.addListener(new yodaddy());
-        Bot.addListener(new roast());
+//        Bot.addListener(new yomama());
+//        Bot.addListener(new yodaddy());
+//        Bot.addListener(new roast());
         Bot.addListener(new BankHelp());
         Bot.addListener(new getMentionTag());
         Bot.addListener(new dlt());
