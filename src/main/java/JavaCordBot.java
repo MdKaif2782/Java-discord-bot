@@ -29,8 +29,8 @@ public class JavaCordBot {
 
     public static void main(String[] args) {
 
-        String token1 = "OTI0NjA4NDc0NDA5NzQyMzU3.YchCvg";
-        String token2 = ".gUW7CdHiQ3o8S8oen-KNaC3mTz4";
+        String token1 = "OTI0NjA4NDc0NDA5NzQyMzU3.";
+        String token2 = "YchCvg.A0s-BnJ5_XmULW2GwyAj6mpY058";
 
         DiscordApi Bot = new DiscordApiBuilder()
         .setToken(token1+token2)

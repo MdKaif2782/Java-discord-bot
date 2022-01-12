@@ -17,8 +17,6 @@ test {
 
 dependencies {
     implementation 'com.fasterxml:jackson-xml-databind:0.6.2'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
     implementation 'org.javacord:javacord:3.3.2'
     runtimeOnly 'org.apache.logging.log4j:log4j-core:2.17.0'
     implementation 'com.googlecode.json-simple:json-simple:1.1.1'
@@ -31,7 +29,7 @@ build.mustRunAfter test
 
 jar {
     manifest{
-        attributes 'Class-Path': '/libs/JavaCordBot-1.0-all.jar', 'Main-Class': 'JavaCordBot'
+        attributes 'Class-Path': '/libs/JavaCordBot-1.0.jar', 'Main-Class': 'JavaCordBot'
     }
 }
 
