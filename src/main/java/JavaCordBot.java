@@ -29,9 +29,9 @@ import java.io.IOException;
 public class JavaCordBot {
 
 
-    public static void main(String[] args) throws IOException, ParseException {
+    public static void main(String[] args) {
         DiscordApi Bot = new DiscordApiBuilder()
-        .setToken("OTI0NjA4ND"+"c0NDA5NzQyMzU3.YchCvg.pIdcQe3OZgaVmPRULWCZbXQiNwA")
+        .setToken(System.getenv("VAR1"))
         .login().join();
 
         Bot.updateActivity(ActivityType.LISTENING, "helicopter helicopter");
