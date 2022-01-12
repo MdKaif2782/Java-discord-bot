@@ -48,12 +48,12 @@ public class NekoLifeMention implements MessageCreateListener {
                     if (rootobj.containsKey("url")) {
                         String imageURL = rootobj.get("url").toString();
 
-                        String suffix = msg[1]+"ed potassium cyanide to ";
+                        String suffix = msg[1]+"ed ";
                         if (msg[1].equalsIgnoreCase("tickle")
                         ||msg[1].equalsIgnoreCase("poke")) {
                             suffix=msg[1] +"d";
                         } else if(msg[1].equalsIgnoreCase("feed")) {
-                            suffix = "fed";
+                            suffix = "fed potassium cyanide to";
                         }
 
 
