@@ -21,7 +21,7 @@ public class redditanyAPI implements MessageCreateListener {
         if (msg[0].equalsIgnoreCase("!s")) {
             String sub = msg[1];
 
-            String sURL = "https://reddit-meme-api.herokuapp.com/" + sub; //just a string
+            String sURL = "https://reddit-meme-api.herokuapp.com/" + sub +"/"; //just a string
 
             // Connect to the URL using java's native library
             URL url = null;
