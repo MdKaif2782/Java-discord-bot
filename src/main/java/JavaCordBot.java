@@ -4,6 +4,7 @@ import Commands.APIcommands.NekoLife.NekoHelp;
 import Commands.APIcommands.NekoLife.NekoLifeMention;
 import Commands.APIcommands.NekoLife.NekosDotLife;
 import Commands.APIcommands.NekoLife.nsfwNekoLIfeMentions;
+import Commands.APIcommands.armpitApi;
 import Commands.APIcommands.memeAPI;
 import Commands.admins.Help;
 import Commands.admins.dlt;
@@ -70,6 +71,7 @@ public class JavaCordBot {
         Bot.addListener(new NekoLifeMention());
         Bot.addListener(new nsfwNekoLIfeMentions());
         Bot.addListener(new kick());
+        Bot.addListener(new armpitApi());
 
 
         System.out.println("Bot is online! Owner:Md_kaif#3392");
