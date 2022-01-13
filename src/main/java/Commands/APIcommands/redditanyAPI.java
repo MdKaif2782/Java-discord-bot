@@ -35,6 +35,7 @@ public class redditanyAPI implements MessageCreateListener {
                 JSONObject root = (JSONObject) jp.parse(new InputStreamReader((InputStream) request.getContent())); //Convert the input stream to a json element
                 JSONObject rootobj = new JSONObject(root);
 
+
                 //elements
                 String memeURL = rootobj.get("url").toString();
                 String title = rootobj.get("title").toString();
@@ -45,8 +46,20 @@ public class redditanyAPI implements MessageCreateListener {
                 String ups = rootobj.get("ups").toString();
                 String postlink = rootobj.get("postLink").toString();
 
-                if (nsfw.equalsIgnoreCase("true")) {
-                    if (event.getChannel().asServerTextChannel().get().isNsfw()) {
+
+
+                    if (nsfw.equalsIgnoreCase("true")) {
+                        if (event.getChannel().asServerTextChannel().get().isNsfw()) {
+                            new MessageBuilder().setEmbeds(new EmbedBuilder()
+                                    .setAuthor("JavaCord", "https://www.reddit.com/user/Md_kaif", "https://i.pinimg.com/564x/78/a9/23/78a923b6e08e58697467007bfdd37745.jpg")
+                                    .setImage(memeURL)
+                                    .setTitle(title)
+                                    .setDescription("[Posted](" + postlink + ") *by u/" + author + " on r/" + subreddit + "*")
+                                    .setFooter("Upvotes: " + ups + "   NSFW: " + nsfw + "    SPOILER: " + spoiler)).send(event.getChannel());
+                        } else {
+                            event.getChannel().sendMessage("The post contains nsfw\nTo get the post send command in the nsfw channel");
+                        }
+                    } else {
                         new MessageBuilder().setEmbeds(new EmbedBuilder()
                                 .setAuthor("JavaCord", "https://www.reddit.com/user/Md_kaif", "https://i.pinimg.com/564x/78/a9/23/78a923b6e08e58697467007bfdd37745.jpg")
                                 .setImage(memeURL)
@@ -54,22 +67,12 @@ public class redditanyAPI implements MessageCreateListener {
                                 .setDescription("[Posted](" + postlink + ") *by u/" + author + " on r/" + subreddit + "*")
                                 .setFooter("Upvotes: " + ups + "   NSFW: " + nsfw + "    SPOILER: " + spoiler)).send(event.getChannel());
                     }
-                    else {
-                        event.getChannel().sendMessage("The post contains nsfw\nTo get the post send command in the nsfw channel");
-                    }
-                } else {
-                    new MessageBuilder().setEmbeds(new EmbedBuilder()
-                            .setAuthor("JavaCord", "https://www.reddit.com/user/Md_kaif", "https://i.pinimg.com/564x/78/a9/23/78a923b6e08e58697467007bfdd37745.jpg")
-                            .setImage(memeURL)
-                            .setTitle(title)
-                            .setDescription("[Posted](" + postlink + ") *by u/" + author + " on r/" + subreddit + "*")
-                            .setFooter("Upvotes: " + ups + "   NSFW: " + nsfw + "    SPOILER: " + spoiler)).send(event.getChannel());
-                }
 
 
 
 
             } catch (IOException | ParseException e) {
+                event.getChannel().sendMessage("Subreddit not found");
                 e.printStackTrace();
             }
 
