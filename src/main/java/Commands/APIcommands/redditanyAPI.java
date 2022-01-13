@@ -21,7 +21,7 @@ public class redditanyAPI implements MessageCreateListener {
         if (msg[0].equalsIgnoreCase("!s")) {
             String sub = msg[1];
 
-            String sURL = "https://reddit-meme-api.herokuapp.com/" + sub +"/"; //just a string
+            String sURL = "https://meme-api.herokuapp.com/gimme/" + sub +"/"; //just a string
 
             // Connect to the URL using java's native library
             URL url = null;
@@ -41,9 +41,9 @@ public class redditanyAPI implements MessageCreateListener {
                 String author = rootobj.get("author").toString();
                 String subreddit = rootobj.get("subreddit").toString();
                 String nsfw = rootobj.get("nsfw").toString();
-                String spoiler = rootobj.get("spoilers_enabled").toString();
+                String spoiler = rootobj.get("spoiler").toString();
                 String ups = rootobj.get("ups").toString();
-                String postlink = rootobj.get("post_link").toString();
+                String postlink = rootobj.get("postLink").toString();
 
                 if (nsfw.equalsIgnoreCase("true")) {
                     if (event.getChannel().asServerTextChannel().get().isNsfw()) {

@@ -23,7 +23,7 @@ public class armpitApi implements MessageCreateListener {
 
             if (Nsfw) {
 
-                String sURL = "https://reddit-meme-api.herokuapp.com/animearmpits/"; //just a string
+                String sURL = "https://meme-api.herokuapp.com/gimme/animemearmpits/"; //just a string
 
                 // Connect to the URL using java's native library
                 URL url = null;
@@ -43,9 +43,9 @@ public class armpitApi implements MessageCreateListener {
                     String author = rootobj.get("author").toString();
                     String subreddit = rootobj.get("subreddit").toString();
                     String nsfw = rootobj.get("nsfw").toString();
-                    String spoiler = rootobj.get("spoilers_enabled").toString();
+                    String spoiler = rootobj.get("spoiler").toString();
                     String ups = rootobj.get("ups").toString();
-                    String postlink = rootobj.get("post_link").toString();
+                    String postlink = rootobj.get("postLink").toString();
 
                     new MessageBuilder().setEmbeds(new EmbedBuilder()
                             .setAuthor("JavaCord", "https://www.reddit.com/user/Md_kaif", "https://i.pinimg.com/564x/78/a9/23/78a923b6e08e58697467007bfdd37745.jpg")
