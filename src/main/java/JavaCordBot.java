@@ -6,6 +6,7 @@ import Commands.APIcommands.NekoLife.NekosDotLife;
 import Commands.APIcommands.NekoLife.nsfwNekoLIfeMentions;
 import Commands.APIcommands.armpitApi;
 import Commands.APIcommands.memeAPI;
+import Commands.APIcommands.redditanyAPI;
 import Commands.admins.Help;
 import Commands.admins.dlt;
 import Commands.admins.kick;
@@ -72,6 +73,7 @@ public class JavaCordBot {
         Bot.addListener(new nsfwNekoLIfeMentions());
         Bot.addListener(new kick());
         Bot.addListener(new armpitApi());
+        Bot.addListener(new redditanyAPI());
 
 
         System.out.println("Bot is online! Owner:Md_kaif#3392");
