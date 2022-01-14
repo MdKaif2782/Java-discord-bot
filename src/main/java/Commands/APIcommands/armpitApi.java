@@ -24,7 +24,7 @@ public class armpitApi implements MessageCreateListener {
             if (Nsfw) {
                 long start = System.currentTimeMillis();
 
-                String sURL = "https://meme-api.herokuapp.com/gimme/animemearmpits/"; //just a string
+                String sURL = "https://meme-api.herokuapp.com/gimme/animearmpits/"; //just a string
 
                 // Connect to the URL using java's native library
                 URL url = null;
