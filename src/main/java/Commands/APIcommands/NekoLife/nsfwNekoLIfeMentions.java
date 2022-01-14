@@ -21,6 +21,7 @@ public class nsfwNekoLIfeMentions implements MessageCreateListener {
     public void onMessageCreate(MessageCreateEvent event) {
         String mention = null;
         String text = null;
+        long start = System.currentTimeMillis();
 
         boolean nsfw = event.getChannel().asServerTextChannel().get().isNsfw();
         String[] msg = event.getMessageContent().split(" ");
@@ -62,6 +63,7 @@ public class nsfwNekoLIfeMentions implements MessageCreateListener {
                             new MessageBuilder().setEmbeds(new EmbedBuilder()
                                     .setDescription(text)
                                     .setImage(imageURL)
+                                    .setFooter("Response time: " +(System.currentTimeMillis()-start) + "ms")
                             ).send(event.getChannel());
                         }
 

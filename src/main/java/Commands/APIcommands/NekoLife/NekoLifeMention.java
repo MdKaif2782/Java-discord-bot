@@ -18,6 +18,7 @@ import java.net.URLConnection;
 public class NekoLifeMention implements MessageCreateListener {
     @Override
     public void onMessageCreate(MessageCreateEvent event) {
+        long start = System.currentTimeMillis();
         String[] msg = event.getMessageContent().split(" ");
         if (msg[0].equalsIgnoreCase("!n")
         && msg.length>2) {
@@ -61,6 +62,7 @@ public class NekoLifeMention implements MessageCreateListener {
                             new MessageBuilder().setEmbeds(new EmbedBuilder()
                                     .setDescription("You "+suffix+" "+mentionedUser.getMentionTag() )
                                     .setImage(imageURL)
+                                    .setFooter("Response time: " +(System.currentTimeMillis()-start) + "ms")
                             ).send(event.getChannel());
                         }
 

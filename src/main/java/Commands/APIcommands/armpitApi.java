@@ -22,6 +22,7 @@ public class armpitApi implements MessageCreateListener {
             boolean Nsfw = event.getChannel().asServerTextChannel().get().isNsfw();
 
             if (Nsfw) {
+                long start = System.currentTimeMillis();
 
                 String sURL = "https://meme-api.herokuapp.com/gimme/animemearmpits/"; //just a string
 
@@ -52,7 +53,8 @@ public class armpitApi implements MessageCreateListener {
                             .setImage(memeURL)
                             .setTitle(title)
                             .setDescription("[Posted](" + postlink + ") *by u/" + author + " on r/" + subreddit + "*")
-                            .setFooter("Upvotes: " + ups + "   NSFW: " + nsfw + "    SPOILER: " + spoiler)).send(event.getChannel());
+                            .setFooter("Upvotes: " + ups + "   NSFW: " + nsfw + "    SPOILER: " + spoiler)
+                            .setFooter("Response time: " +(System.currentTimeMillis()-start)/1000f + "s")).send(event.getChannel());
 
 
                 } catch (IOException | ParseException e) {

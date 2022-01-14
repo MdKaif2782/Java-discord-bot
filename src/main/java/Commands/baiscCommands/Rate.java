@@ -23,6 +23,7 @@ public class Rate implements MessageCreateListener {
 
         if (msg[0].equals("!rate"))
         {
+            long start = System.currentTimeMillis();
             if (msg.length>2) {
 
                 for (User mentionedUser : message.getMessage().getMentionedUsers()) {
@@ -32,6 +33,7 @@ public class Rate implements MessageCreateListener {
                             .setTitle("Rate Calculator")
                             .setDescription(mentionedUser.getMentionTag() + " you are " + ran + "% " + msg[1])
                             .setColor(Color.PINK)
+                            .setFooter("Response time: " +(System.currentTimeMillis()-start) + "ms")
                             .setThumbnail("https://forums.ccbluex.net/assets/uploads/profile/1650-profileavatar.jpeg")
                     ).send(message.getChannel());
                 }
@@ -44,6 +46,7 @@ public class Rate implements MessageCreateListener {
                         .setTitle("Rate Calculator")
                         .setDescription(message.getMessageAuthor().getDisplayName() + " you are " + ran + "% " + msg[1])
                         .setColor(Color.PINK)
+                        .setFooter("Response time: " +(System.currentTimeMillis()-start) + "ms")
                         .setThumbnail("https://forums.ccbluex.net/assets/uploads/profile/1650-profileavatar.jpeg")
                 ).send(message.getChannel());
             }

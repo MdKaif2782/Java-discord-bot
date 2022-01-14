@@ -18,6 +18,7 @@ public class redditanyAPI implements MessageCreateListener {
     @Override
     public void onMessageCreate(MessageCreateEvent event) {
         String[] msg = event.getMessageContent().split(" ");
+        long start = System.currentTimeMillis();
         if (msg[0].equalsIgnoreCase("!s")) {
             String sub = msg[1];
 
@@ -55,7 +56,8 @@ public class redditanyAPI implements MessageCreateListener {
                                     .setImage(memeURL)
                                     .setTitle(title)
                                     .setDescription("[Posted](" + postlink + ") *by u/" + author + " on r/" + subreddit + "*")
-                                    .setFooter("Upvotes: " + ups + "   NSFW: " + nsfw + "    SPOILER: " + spoiler)).send(event.getChannel());
+                                    .setFooter("Upvotes: " + ups + "   NSFW: " + nsfw + "    SPOILER: " + spoiler)
+                                    .setFooter("Response time: " +(System.currentTimeMillis()-start)/1000f + "s")).send(event.getChannel());
                         } else {
                             event.getChannel().sendMessage("The post contains nsfw\nTo get the post send command in the nsfw channel");
                         }
@@ -65,7 +67,8 @@ public class redditanyAPI implements MessageCreateListener {
                                 .setImage(memeURL)
                                 .setTitle(title)
                                 .setDescription("[Posted](" + postlink + ") *by u/" + author + " on r/" + subreddit + "*")
-                                .setFooter("Upvotes: " + ups + "   NSFW: " + nsfw + "    SPOILER: " + spoiler)).send(event.getChannel());
+                                .setFooter("Upvotes: " + ups + "   NSFW: " + nsfw + "    SPOILER: " + spoiler)
+                                .setFooter("Response time: " +(System.currentTimeMillis()-start)/1000f + "s")).send(event.getChannel());
                     }
 
 

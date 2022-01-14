@@ -9,7 +9,9 @@ public class PingPong implements MessageCreateListener {
     public void onMessageCreate(MessageCreateEvent message) {
         if (message.getMessageContent().equalsIgnoreCase("!ping"))
         {
-            message.getChannel().sendMessage("Pong!");
+            long start = System.nanoTime();
+
+            message.getChannel().sendMessage("Pong!\n"+(System.nanoTime()-start)/1000f+"ms");
         }
     }
 }

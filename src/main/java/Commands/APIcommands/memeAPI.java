@@ -23,6 +23,8 @@ public class memeAPI implements MessageCreateListener {
 
         if (event.getMessageContent().equalsIgnoreCase("!meme")) {
 
+            long start = System.currentTimeMillis();
+
             String sURL = "https://meme-api.herokuapp.com/gimme"; //just a string
 
             // Connect to the URL using java's native library
@@ -52,7 +54,8 @@ public class memeAPI implements MessageCreateListener {
                         .setImage(memeURL)
                         .setTitle(title)
                         .setDescription("[Posted](" +postlink+ ") *by u/" + author + " on r/" + subreddit + "*")
-                                .setFooter("Upvotes: " + ups +"   NSFW: "+nsfw+"    SPOILER: "+ spoiler  )).send(event.getChannel());
+                                .setFooter("Upvotes: " + ups +"   NSFW: "+nsfw+"    SPOILER: "+ spoiler  )
+                        .setFooter("Response time: " +(System.currentTimeMillis()-start)/1000f + "s")).send(event.getChannel());
 
 
 

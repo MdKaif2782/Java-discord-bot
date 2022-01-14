@@ -1,5 +1,7 @@
 package Commands.APIcommands.NekoLife;
 
+import org.javacord.api.entity.message.MessageBuilder;
+import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.listener.message.MessageCreateListener;
 import org.json.simple.JSONObject;
@@ -16,7 +18,7 @@ import java.net.URLConnection;
 public class NekosDotLife implements MessageCreateListener {
     @Override
     public void onMessageCreate(MessageCreateEvent event) {
-
+        long start = System.currentTimeMillis();
         String[] msg = event.getMessageContent().split(" ");
 
         if (msg[0].equalsIgnoreCase("!n") && msg.length==2) {
@@ -67,7 +69,9 @@ public class NekosDotLife implements MessageCreateListener {
                     if (rootobj.containsKey("url")) {
                         String imageURL = rootobj.get("url").toString();
 
-                        event.getChannel().sendMessage(imageURL);
+                        new MessageBuilder().setEmbeds(new EmbedBuilder()
+                                        .setImage(imageURL)
+                                .setFooter("Response time: " +(System.currentTimeMillis()-start) + "ms")).send(event.getChannel());
                     }
                     else {
                         event.getChannel().sendMessage("You entered a wrong command\nFor more information and help type ```!nhelp```");
