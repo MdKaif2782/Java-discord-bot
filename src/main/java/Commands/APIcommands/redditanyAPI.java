@@ -57,7 +57,7 @@ public class redditanyAPI implements MessageCreateListener {
                                     .setTitle(title)
                                     .setDescription("[Posted](" + postlink + ") *by u/" + author + " on r/" + subreddit + "*")
                                     .setFooter("Upvotes: " + ups + "   NSFW: " + nsfw + "    SPOILER: " + spoiler)
-                                    .setFooter("Response time: " +(System.currentTimeMillis()-start)/1000f + "s")).send(event.getChannel());
+                                    .setFooter("Response time: " +(System.currentTimeMillis()-start) + "ms")).send(event.getChannel());
                         } else {
                             event.getChannel().sendMessage("The post contains nsfw\nTo get the post send command in the nsfw channel");
                         }
@@ -68,7 +68,7 @@ public class redditanyAPI implements MessageCreateListener {
                                 .setTitle(title)
                                 .setDescription("[Posted](" + postlink + ") *by u/" + author + " on r/" + subreddit + "*")
                                 .setFooter("Upvotes: " + ups + "   NSFW: " + nsfw + "    SPOILER: " + spoiler)
-                                .setFooter("Response time: " +(System.currentTimeMillis()-start)/1000f + "s")).send(event.getChannel());
+                                .setFooter("Response time: " +(System.currentTimeMillis()-start) + "ms")).send(event.getChannel());
                     }
 
 
