@@ -19,7 +19,7 @@ public class redditanyAPI implements MessageCreateListener {
     public void onMessageCreate(MessageCreateEvent event) {
         String[] msg = event.getMessageContent().split(" ");
         long start = System.currentTimeMillis();
-        if (msg[0].equalsIgnoreCase("!s")) {
+        if (msg[0].equalsIgnoreCase("!s") && msg.length==2) {
             String sub = msg[1];
 
             String sURL = "https://meme-api.herokuapp.com/gimme/" + sub +"/"; //just a string
