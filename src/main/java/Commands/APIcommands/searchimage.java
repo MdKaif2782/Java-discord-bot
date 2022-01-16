@@ -20,19 +20,20 @@ public class searchimage implements MessageCreateListener {
     @Override
     public void onMessageCreate(MessageCreateEvent event) {
         String[] msg = event.getMessageContent().split(" ");
-        if (msg.length==3 && msg[0].equalsIgnoreCase("!s"))
+        if (msg.length>2 && msg[0].equalsIgnoreCase("!s"))
         {
             boolean isnsfw = event.getChannel().asServerTextChannel().get().isNsfw();
 
             String subreddit = msg[1];
             String query = msg[2];
+            String range = msg[3];
 
             long start = System.currentTimeMillis();
 
             event.getChannel().type();
 
 
-           String URL = "https://api.pushshift.io/reddit/search/submission/?q" + query + "&subreddit=" + subreddit + "&sort=desc&size=50&sort_type=score";
+           String URL = "https://api.pushshift.io/reddit/search/submission/?q" + query + "&subreddit=" + subreddit + "&sort=desc&size="+ range+"&sort_type=score";
 //            URL[1] = "https://api.pushshift.io/reddit/search/submission/?q" + query + "&subreddit=" + subreddit + "&sort=desc&size=50&sort_type=num_comments";
 
 
