@@ -20,28 +20,41 @@ public class searchimage implements MessageCreateListener {
     @Override
     public void onMessageCreate(MessageCreateEvent event) {
         String[] msg = event.getMessageContent().split(" ");
+
         if (msg.length>2 && msg[0].equalsIgnoreCase("!s"))
         {
             boolean isnsfw = event.getChannel().asServerTextChannel().get().isNsfw();
-
+            String range = null;
             String subreddit = msg[1];
             String query = msg[2];
-            String range = msg[3];
+
+            if (msg.length==4){
+                range = msg[3];
+            } else {
+                range = "100";
+            }
 
             long start = System.currentTimeMillis();
 
             event.getChannel().type();
 
+            Random rand = new Random();
+            int upperbound= 2;
+            int ran = rand.nextInt(upperbound);
 
-           String URL = "https://api.pushshift.io/reddit/search/submission/?q" + query + "&subreddit=" + subreddit + "&sort=desc&size="+ range+"&sort_type=score";
-//            URL[1] = "https://api.pushshift.io/reddit/search/submission/?q" + query + "&subreddit=" + subreddit + "&sort=desc&size=50&sort_type=num_comments";
+            String[] URL = new String[2];
+
+            URL[0] = "https://api.pushshift.io/reddit/search/submission/?q=" + query + "&subreddit=" + subreddit + "&sort=desc&size="+ range+"&sort_type=score";
+
+
+            URL[1] = "https://api.pushshift.io/reddit/search/submission/?q=" + query + "&subreddit=" + subreddit + "&sort=desc&size=50&sort_type=num_comments";
 
 
 
 
             URL url = null;
             try {
-                url = new URL(URL);
+                url = new URL(URL[ran]);
                 URLConnection request = url.openConnection();
                 request.connect();
 
@@ -52,11 +65,10 @@ public class searchimage implements MessageCreateListener {
                 JSONArray array = (JSONArray) rootobj.get("data");
 
 
-                Random rand = new Random();
-                int upperbound= array.size();
-                int ran = rand.nextInt(upperbound);
+                 int upperbound2= array.size();
+                 int rands = rand.nextInt(upperbound2);
 
-                JSONObject obj = (JSONObject) array.get(ran);
+                JSONObject obj = (JSONObject) array.get(rands);
 
                 String memeURL = obj.get("url").toString();
                 String title = obj.get("title").toString();
