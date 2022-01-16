@@ -31,17 +31,16 @@ public class searchimage implements MessageCreateListener {
 
             event.getChannel().type();
 
-            String[] URL = new String[2];
-            URL[0] = "https://api.pushshift.io/reddit/search/submission/?q" + query + "&subreddit=" + subreddit + "&sort=desc&size=500&sort_type=score";
-            URL[1] = "https://api.pushshift.io/reddit/search/submission/?q" + query + "&subreddit=" + subreddit + "&sort=desc&size=500&sort_type=num_comments";
 
-            Random rand = new Random();
-            int upperbound = 2;
-            int ran = rand.nextInt(upperbound);
+           String URL = "https://api.pushshift.io/reddit/search/submission/?q" + query + "&subreddit=" + subreddit + "&sort=desc&size=50&sort_type=score";
+//            URL[1] = "https://api.pushshift.io/reddit/search/submission/?q" + query + "&subreddit=" + subreddit + "&sort=desc&size=50&sort_type=num_comments";
+
+
+
 
             URL url = null;
             try {
-                url = new URL(URL[ran]);
+                url = new URL(URL);
                 URLConnection request = url.openConnection();
                 request.connect();
 
@@ -51,8 +50,10 @@ public class searchimage implements MessageCreateListener {
                 JSONObject rootobj = new JSONObject(root);
                 JSONArray array = (JSONArray) rootobj.get("data");
 
-                upperbound= array.size();
-                ran = rand.nextInt(upperbound);
+
+                Random rand = new Random();
+                int upperbound= array.size();
+                int ran = rand.nextInt(upperbound);
 
                 JSONObject obj = (JSONObject) array.get(ran);
 
