@@ -1,5 +1,8 @@
 package Commands.APIcommands;
 
+import org.javacord.api.entity.message.MessageBuilder;
+import org.javacord.api.entity.message.MessageDecoration;
+import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.listener.message.MessageCreateListener;
 import org.json.simple.JSONArray;
@@ -7,6 +10,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -101,23 +105,38 @@ public class getALL implements MessageCreateListener {
 
 
                 StringBuffer result = new StringBuffer();
+
+                StringBuffer result50 = new StringBuffer();
+
+
                 for (int i = 0; i < union.length; i++) {
                     result.append(union[i]);
                     //result.append( optional separator );
                 }
                 String mynewstring = result.toString();
 
-                if (msg[3].equalsIgnoreCase("getall")) {
-                    event.getChannel().sendMessage("```" + mynewstring + "```");
-                } else {
-                    event.getChannel().sendMessage(mynewstring);
-                }
-                if (union.length>1) {
+
+
+//                if (msg[3].equalsIgnoreCase("getall")) {
+//                    event.getChannel().sendMessage("```" + mynewstring + "```");
+//                } else {
+//                    event.getChannel().sendMessage(mynewstring);
+//                }
+
                     for (int i=0; i< union.length;i++) {
-                        event.getChannel().sendMessage(union[i]);
+
+                        new MessageBuilder()
+                                .append("#" + i +" out of " + union.length, MessageDecoration.BOLD, MessageDecoration.UNDERLINE)
+                                .setEmbed(new EmbedBuilder()
+                                        .setImage(union[i])
+                                        .setColor(Color.BLACK))
+                                .send(event.getChannel());
+
+
+//                        event.getChannel().sendMessage(union[i]);
                     }
-                }
-                event.getChannel().sendMessage(String.valueOf(union.length)+ " results found");
+
+//                event.getChannel().sendMessage(String.valueOf(union.length)+ " results found");
             }
         }
     }
