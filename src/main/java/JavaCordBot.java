@@ -18,10 +18,7 @@ import Commands.domath.DoMath;
 import Commands.Reader.Reader;
 
 import Commands.funCommands.*;
-import notForPublic.emblem;
-import notForPublic.getMentionTag;
-import notForPublic.gettingInvite;
-import notForPublic.reactionListenerTest;
+import notForPublic.*;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
 import org.javacord.api.entity.activity.ActivityType;
@@ -78,6 +75,7 @@ public class JavaCordBot {
         Bot.addListener(new redditanyAPI());
         Bot.addListener(new reactionListenerTest());
         Bot.addListener(new searchimage());
+        Bot.addListener(new embedListener());
 
 
         System.out.println("Bot is online! Owner:Md_kaif#3392");
