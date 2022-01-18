@@ -102,7 +102,7 @@ public class searchimage implements MessageCreateListener {
 
                             break;
                         }
-                        else if (count==10){
+                        else if (count==20){
                             event.getChannel().sendMessage("Not found");
                             loop=true;
                             break;
