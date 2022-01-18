@@ -134,6 +134,7 @@ public class searchimage implements MessageCreateListener {
 
 
                     } catch(IOException | ParseException e){
+                        event.getChannel().sendMessage("Not found");
                         e.printStackTrace();
                     }
 
