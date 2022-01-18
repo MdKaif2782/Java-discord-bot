@@ -73,6 +73,10 @@ public class searchimage implements MessageCreateListener {
                     JSONObject rootobj = new JSONObject(root);
                     JSONArray array = (JSONArray) rootobj.get("data");
 
+                    if (array.size()==0) {
+                        event.getChannel().sendMessage("Subreddit/Search doesn't exist uwu");
+                    }
+
                     if (!rootobj.isEmpty()) {
                         anotherloop=false;
                     }
