@@ -24,6 +24,16 @@ public class searchimage implements MessageCreateListener {
     public void onMessageCreate(MessageCreateEvent event) {
         String[] msg = event.getMessageContent().split(" ");
 
+
+
+        String memeURL = null;
+        String title = null;
+        String author = null;
+        String nsfw = null;
+        String spoiler = null;
+        String ups = null;
+        String postlink = null;
+
         if (msg.length>2 && msg[0].equalsIgnoreCase("!s"))
         {
             boolean isnsfw = event.getChannel().asServerTextChannel().get().isNsfw();
@@ -31,20 +41,14 @@ public class searchimage implements MessageCreateListener {
             String subreddit = msg[1];
             String query = msg[2];
 
-            if (msg.length==4){
-                range = msg[3];
-            } else {
-                range = "100";
-            }
+
 
             long start = System.currentTimeMillis();
-
             event.getChannel().type();
-
             boolean loop = true;
 
 
-            while (loop) {
+
 
             Random rand = new Random();
             int upperbound= 6;
@@ -71,30 +75,39 @@ public class searchimage implements MessageCreateListener {
                     JSONObject rootobj = new JSONObject(root);
                     JSONArray array = (JSONArray) rootobj.get("data");
 
+                    int count = 0;
 
-                    int upperbound2 = array.size();
-                    int rands = rand.nextInt(upperbound2);
 
-                    JSONObject obj = (JSONObject) array.get(rands);
-                    URL imageURL = new URL(obj.get("url").toString());
-                    BufferedImage image = ImageIO.read(imageURL);
+                    while (loop) {
 
-                    if (image==null) {
-                        loop = true;
-                    } else {
-                        loop = false;
+                        count++;
+
+                        int upperbound2 = array.size();
+                        int rands = rand.nextInt(upperbound2);
+
+                        JSONObject obj = (JSONObject) array.get(rands);
+                        URL imageURL = new URL(obj.get("url").toString());
+                        BufferedImage image = ImageIO.read(imageURL);
+
+                        if (image!=null) {
+
+                            memeURL = obj.get("url").toString();
+                            title = obj.get("title").toString();
+                            author = obj.get("author").toString();
+                            nsfw = obj.get("over_18").toString();
+                            spoiler = obj.get("spoiler").toString();
+                            ups = obj.get("score").toString();
+                            postlink = obj.get("full_link").toString();
+                            loop = false;
+
+                            break;
+                        }
+                        else if (count==10){
+                            event.getChannel().sendMessage("Not found");
+                            loop=true;
+                            break;
+                        }
                     }
-
-
-
-
-                        String memeURL = obj.get("url").toString();
-                        String title = obj.get("title").toString();
-                        String author = obj.get("author").toString();
-                        String nsfw = obj.get("over_18").toString();
-                        String spoiler = obj.get("spoiler").toString();
-                        String ups = obj.get("score").toString();
-                        String postlink = obj.get("full_link").toString();
 
 
                         if (nsfw.equalsIgnoreCase("true") && loop==false) {
@@ -127,4 +140,4 @@ public class searchimage implements MessageCreateListener {
             }
         }
     }
-}
+
