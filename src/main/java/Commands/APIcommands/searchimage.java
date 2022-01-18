@@ -25,7 +25,6 @@ public class searchimage implements MessageCreateListener {
         String[] msg = event.getMessageContent().split(" ");
 
 
-
         String memeURL = null;
         String title = null;
         String author = null;
@@ -34,27 +33,26 @@ public class searchimage implements MessageCreateListener {
         String ups = null;
         String postlink = null;
 
-        if (msg.length>2 && msg[0].equalsIgnoreCase("!s"))
-        {
+        if (msg.length > 2 && msg[0].equalsIgnoreCase("!s")) {
             boolean isnsfw = event.getChannel().asServerTextChannel().get().isNsfw();
             String range = null;
             String subreddit = msg[1];
             String query = msg[2];
 
 
-
             long start = System.currentTimeMillis();
             event.getChannel().type();
             boolean loop = true;
+            boolean anotherloop = true;
 
 
+            while (loop) {
 
+                Random rand = new Random();
+                int upperbound = 6;
+                int ran = rand.nextInt(upperbound);
 
-            Random rand = new Random();
-            int upperbound= 6;
-            int ran = rand.nextInt(upperbound);
-
-            String[] URL = new String[6];
+                String[] URL = new String[6];
 
                 URL[0] = "https://api.pushshift.io/reddit/search/submission/?q=" + query + "&subreddit=" + subreddit + "&sort=desc&size=500";
                 URL[1] = "https://api.pushshift.io/reddit/search/submission/?q=" + query + "&subreddit=" + subreddit + "&sort=asc&size=500";
@@ -75,6 +73,10 @@ public class searchimage implements MessageCreateListener {
                     JSONObject rootobj = new JSONObject(root);
                     JSONArray array = (JSONArray) rootobj.get("data");
 
+                    if (!rootobj.isEmpty()) {
+                        anotherloop=false;
+                    }
+
                     int count = 0;
 
 
@@ -89,7 +91,7 @@ public class searchimage implements MessageCreateListener {
                         URL imageURL = new URL(obj.get("url").toString());
                         BufferedImage image = ImageIO.read(imageURL);
 
-                        if (image!=null) {
+                        if (image != null) {
 
                             memeURL = obj.get("url").toString();
                             title = obj.get("title").toString();
@@ -101,28 +103,16 @@ public class searchimage implements MessageCreateListener {
                             loop = false;
 
                             break;
-                        }
-                        else if (count==20){
+                        } else if (count == 20) {
                             event.getChannel().sendMessage("Not found");
-                            loop=true;
+                            loop = true;
                             break;
                         }
                     }
 
 
-                        if (nsfw.equalsIgnoreCase("true") && loop==false) {
-                            if (isnsfw) {
-                                new MessageBuilder().setEmbeds(new EmbedBuilder()
-                                        .setAuthor("JavaCord", "https://www.reddit.com/user/Md_kaif", "https://i.pinimg.com/564x/78/a9/23/78a923b6e08e58697467007bfdd37745.jpg")
-                                        .setImage(memeURL)
-                                        .setTitle(title)
-                                        .setDescription("[Posted](" + postlink + ") *by u/" + author + " on r/" + subreddit + "*")
-                                        .setFooter("Upvotes: " + ups + "   NSFW: " + nsfw + "    SPOILER: " + spoiler + "\nResponse time: " + (System.currentTimeMillis() - start) + "ms")
-                                ).send(event.getChannel());
-                            } else {
-                                event.getChannel().sendMessage("The post contains nsfw\nTo get the post send command in the nsfw channel");
-                            }
-                        } else if (loop==false && nsfw.equalsIgnoreCase("false")){
+                    if (nsfw.equalsIgnoreCase("true") && loop == false) {
+                        if (isnsfw) {
                             new MessageBuilder().setEmbeds(new EmbedBuilder()
                                     .setAuthor("JavaCord", "https://www.reddit.com/user/Md_kaif", "https://i.pinimg.com/564x/78/a9/23/78a923b6e08e58697467007bfdd37745.jpg")
                                     .setImage(memeURL)
@@ -130,15 +120,26 @@ public class searchimage implements MessageCreateListener {
                                     .setDescription("[Posted](" + postlink + ") *by u/" + author + " on r/" + subreddit + "*")
                                     .setFooter("Upvotes: " + ups + "   NSFW: " + nsfw + "    SPOILER: " + spoiler + "\nResponse time: " + (System.currentTimeMillis() - start) + "ms")
                             ).send(event.getChannel());
+                        } else {
+                            event.getChannel().sendMessage("The post contains nsfw\nTo get the post send command in the nsfw channel");
                         }
-
-
-                    } catch(IOException | ParseException e){
-                        event.getChannel().sendMessage("Not found");
-                        e.printStackTrace();
+                    } else if (loop == false && nsfw.equalsIgnoreCase("false")) {
+                        new MessageBuilder().setEmbeds(new EmbedBuilder()
+                                .setAuthor("JavaCord", "https://www.reddit.com/user/Md_kaif", "https://i.pinimg.com/564x/78/a9/23/78a923b6e08e58697467007bfdd37745.jpg")
+                                .setImage(memeURL)
+                                .setTitle(title)
+                                .setDescription("[Posted](" + postlink + ") *by u/" + author + " on r/" + subreddit + "*")
+                                .setFooter("Upvotes: " + ups + "   NSFW: " + nsfw + "    SPOILER: " + spoiler + "\nResponse time: " + (System.currentTimeMillis() - start) + "ms")
+                        ).send(event.getChannel());
                     }
+
+
+                } catch (IOException | ParseException e) {
+                    event.getChannel().sendMessage("Not found");
+                    e.printStackTrace();
+                }
 
             }
         }
     }
-
+}
