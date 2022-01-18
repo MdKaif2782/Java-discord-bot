@@ -47,16 +47,17 @@ public class searchimage implements MessageCreateListener {
             while (loop) {
 
             Random rand = new Random();
-            int upperbound= 2;
+            int upperbound= 6;
             int ran = rand.nextInt(upperbound);
 
-            String[] URL = new String[2];
+            String[] URL = new String[6];
 
-            URL[0] = "https://api.pushshift.io/reddit/search/submission/?q=" + query + "&subreddit=" + subreddit + "&sort=desc&size="+ range+"&sort_type=score";
-
-
-            URL[1] = "https://api.pushshift.io/reddit/search/submission/?q=" + query + "&subreddit=" + subreddit + "&sort=desc&size=50&sort_type=num_comments";
-
+                URL[0] = "https://api.pushshift.io/reddit/search/submission/?q=" + query + "&subreddit=" + subreddit + "&sort=desc&size=500";
+                URL[1] = "https://api.pushshift.io/reddit/search/submission/?q=" + query + "&subreddit=" + subreddit + "&sort=asc&size=500";
+                URL[2] = "https://api.pushshift.io/reddit/search/submission/?q=" + query + "&subreddit=" + subreddit + "&sort=desc&size=500&sort_type=score";
+                URL[3] = "https://api.pushshift.io/reddit/search/submission/?q=" + query + "&subreddit=" + subreddit + "&sort=asc&size=500&sort_type=score";
+                URL[4] = "https://api.pushshift.io/reddit/search/submission/?q=" + query + "&subreddit=" + subreddit + "&sort=desc&size=500&sort_type=num_comments";
+                URL[5] = "https://api.pushshift.io/reddit/search/submission/?q=" + query + "&subreddit=" + subreddit + "&sort=asc&size=500&sort_type=num_comments";
 
                 URL url = null;
                 try {
