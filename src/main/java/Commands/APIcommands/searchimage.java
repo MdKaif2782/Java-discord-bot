@@ -95,7 +95,7 @@ public class searchimage implements MessageCreateListener {
                         URL imageURL = new URL(obj.get("url").toString());
                         BufferedImage image = ImageIO.read(imageURL);
 
-                        if (image != null) {
+                        if (image != null || url.toString().contains("gallery")) {
 
                             memeURL = obj.get("url").toString();
                             title = obj.get("title").toString();
