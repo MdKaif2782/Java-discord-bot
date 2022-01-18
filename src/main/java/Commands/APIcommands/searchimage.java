@@ -81,7 +81,6 @@ public class searchimage implements MessageCreateListener {
 
                     if (image==null) {
                         loop = true;
-                        event.getChannel().sendMessage("1 image filtered");
                     } else {
                         loop = false;
                     }
