@@ -112,6 +112,11 @@ public class getALL implements MessageCreateListener {
                 } else {
                     event.getChannel().sendMessage(mynewstring);
                 }
+                if (union.length>60) {
+                    for (int i=0; i< union.length;i++) {
+                        event.getChannel().sendMessage(union[i]);
+                    }
+                }
                 event.getChannel().sendMessage(String.valueOf(union.length)+ " results found");
             }
         }
