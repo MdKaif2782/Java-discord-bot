@@ -29,7 +29,7 @@ public class embedListener implements MessageCreateListener {
                 BufferedImage image = ImageIO.read(url);
 
                 if (image==null) {
-                    event.getChannel().sendMessage("there was not any image");
+//                    event.getChannel().sendMessage("there was not any image");
                 }
 
 

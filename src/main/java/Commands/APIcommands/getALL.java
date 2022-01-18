@@ -128,6 +128,7 @@ public class getALL implements MessageCreateListener {
                         new MessageBuilder()
                                 .append("#" + i +" out of " + union.length, MessageDecoration.BOLD, MessageDecoration.UNDERLINE)
                                 .setEmbed(new EmbedBuilder()
+                                        .setDescription("[Link:]("+ union[i]+ ")" )
                                         .setImage(union[i])
                                         .setColor(Color.BLACK))
                                 .send(event.getChannel());
