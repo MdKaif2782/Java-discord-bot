@@ -33,7 +33,7 @@ public class searchimage implements MessageCreateListener {
         String ups = null;
         String postlink = null;
 
-        if (msg.length > 2 && msg[0].equalsIgnoreCase("!s")) {
+        if (msg.length <4 && msg[0].equalsIgnoreCase("!s")) {
             boolean isnsfw = event.getChannel().asServerTextChannel().get().isNsfw();
             String range = null;
             String subreddit = msg[1];
@@ -95,7 +95,9 @@ public class searchimage implements MessageCreateListener {
                         URL imageURL = new URL(obj.get("url").toString());
                         BufferedImage image = ImageIO.read(imageURL);
 
-                        if (image != null || obj.get("url").toString().contains("gallery")) {
+                        if (image != null) {
+
+
 
                             memeURL = obj.get("url").toString();
                             title = obj.get("title").toString();

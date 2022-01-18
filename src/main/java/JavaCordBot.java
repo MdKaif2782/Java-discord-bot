@@ -1,13 +1,10 @@
 import Banking.*;
 
+import Commands.APIcommands.*;
 import Commands.APIcommands.NekoLife.NekoHelp;
 import Commands.APIcommands.NekoLife.NekoLifeMention;
 import Commands.APIcommands.NekoLife.NekosDotLife;
 import Commands.APIcommands.NekoLife.nsfwNekoLIfeMentions;
-import Commands.APIcommands.armpitApi;
-import Commands.APIcommands.memeAPI;
-import Commands.APIcommands.redditanyAPI;
-import Commands.APIcommands.searchimage;
 import Commands.admins.Help;
 import Commands.admins.dlt;
 import Commands.admins.kick;
@@ -76,6 +73,7 @@ public class JavaCordBot {
         Bot.addListener(new reactionListenerTest());
         Bot.addListener(new searchimage());
         Bot.addListener(new embedListener());
+        Bot.addListener(new getALL());
 
 
         System.out.println("Bot is online! Owner:Md_kaif#3392");
