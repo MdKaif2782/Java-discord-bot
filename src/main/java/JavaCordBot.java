@@ -5,6 +5,7 @@ import Commands.APIcommands.NekoLife.NekoHelp;
 import Commands.APIcommands.NekoLife.NekoLifeMention;
 import Commands.APIcommands.NekoLife.NekosDotLife;
 import Commands.APIcommands.NekoLife.nsfwNekoLIfeMentions;
+import Commands.APIcommands.booru.boorusearch;
 import Commands.admins.Help;
 import Commands.admins.dlt;
 import Commands.admins.kick;
@@ -74,6 +75,7 @@ public class JavaCordBot {
         Bot.addListener(new searchimage());
         Bot.addListener(new embedListener());
         Bot.addListener(new getALL());
+        Bot.addListener(new boorusearch());
 
 
         System.out.println("Bot is online! Owner:Md_kaif#3392");
