@@ -267,7 +267,13 @@ public class boorusearch implements MessageCreateListener {
 
                             String resultsfound = String.valueOf(roots.size());
 
-                            String imagelink = postNo.get("large_file_url").toString();
+                            String imagelink;
+                            if (postNo.containsKey("large_file_url")) {
+
+                                imagelink = postNo.get("large_file_url").toString();
+                            } else {
+                                imagelink = postNo.get("source").toString();
+                            }
                             String relatedTags = postNo.get("tag_string").toString();
                             String charTag = postNo.get("tag_string_character").toString();
                             String seriesTag = postNo.get("tag_string_copyright").toString();
