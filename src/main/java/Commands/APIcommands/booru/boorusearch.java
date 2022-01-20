@@ -29,17 +29,17 @@ public class boorusearch implements MessageCreateListener {
 
             event.getChannel().type();
 
-            String tags = msgg[1]+" ";
+            String tags = msgg[1] + " ";
 
             {
 
-                if (!msgg[msgg.length-1].contains("getall")) {
+                if (!msgg[msgg.length - 1].contains("getall")) {
 
                     for (int i = 2; i < msgg.length; i++) {
                         tags = tags + msgg[i] + " ";
                     }
                 } else {
-                    for (int i = 2; i < msgg.length-1; i++) {
+                    for (int i = 2; i < msgg.length - 1; i++) {
                         tags = tags + msgg[i] + " ";
                     }
                 }
@@ -166,7 +166,7 @@ public class boorusearch implements MessageCreateListener {
 
                 }
 
-                String postURL = "https://danbooru.donmai.us/posts.json?limit=200&tags=";
+                String postURL = "https://danbooru.donmai.us/posts.json?&tags=";
 
                 for (int i = 0; i < TAGS.size(); i++) {
 
@@ -193,123 +193,153 @@ public class boorusearch implements MessageCreateListener {
 
                 //Finally parsing the posts uwu
 
-                URL urll = null;
-                try {
-                    urll = new URL(postURL);
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                }
-                URLConnection requests = null;
-                try {
-                    requests = urll.openConnection();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    requests.connect();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                JSONParser jpp = new JSONParser(); //from gson
-                JSONArray roots = null;
-                try {
-                    roots = (JSONArray) jpp.parse(new InputStreamReader((InputStream) requests.getContent()));
-                } catch (IOException | ParseException e) {
-                    e.printStackTrace();
-                }
+                JSONArray array = new JSONArray();
+                boolean postase = true;
 
 
-                //post no.
-                if (roots.size() == 0 || postURL.equalsIgnoreCase("https://danbooru.donmai.us/posts.json?limit=200&tags=")) {
-                    event.getChannel().sendMessage("No result found");
-                    System.out.println("No result found");
-                } else {
-
-                    if (!msgg[msgg.length - 1].equalsIgnoreCase("getall")) {
-
-                        Random rand = new Random();
-                        int upperbound = roots.size();
-                        int ran = rand.nextInt(upperbound);
-
-                        JSONObject postNo = (JSONObject) roots.get(ran);
-
-                        String resultsfound = String.valueOf(roots.size());
-
-                        String imagelink;
-                        if (postNo.containsKey("large_file_url")) {
-
-                             imagelink = postNo.get("large_file_url").toString();
-                        } else {
-                            imagelink = postNo.get("source").toString();
-                        }
-                        String relatedTags = postNo.get("tag_string").toString();
-                        String charTag = postNo.get("tag_string_character").toString();
-                        String seriesTag = postNo.get("tag_string_copyright").toString();
-
-//                    System.out.println(imagelink);
-//                    System.out.println("Related Tags: " + relatedTags);
-//                    System.out.println("Character Tag: " + charTag);
-//                    System.out.println("Source Tag: " + seriesTag);
-//                    System.out.println(resultsfound + " results found");
-
-                        new MessageBuilder().setEmbeds(new EmbedBuilder()
-                                .setImage(imagelink)
-                                .setFooter("\nCharacter Tags: " + charTag +
-                                        "\nSource Tag: " + seriesTag +
-                                        "\nResults found: " + resultsfound)
-                                .setColor(Color.BLACK)).send(event.getChannel());
-
-
-                    } else {
-                        for (int i = 0; i< roots.size();i++){
-                            JSONObject postNo = (JSONObject) roots.get(i);
-
-                            String resultsfound = String.valueOf(roots.size());
-
-                            String imagelink;
-                            if (postNo.containsKey("large_file_url")) {
-
-                                imagelink = postNo.get("large_file_url").toString();
-                            } else {
-                                imagelink = postNo.get("source").toString();
-                            }
-                            String relatedTags = postNo.get("tag_string").toString();
-                            String charTag = postNo.get("tag_string_character").toString();
-                            String seriesTag = postNo.get("tag_string_copyright").toString();
-
-//                    System.out.println(imagelink);
-//                    System.out.println("Related Tags: " + relatedTags);
-//                    System.out.println("Character Tag: " + charTag);
-//                    System.out.println("Source Tag: " + seriesTag);
-//                    System.out.println(resultsfound + " results found");
-
-                            new MessageBuilder()
-                                    .append("#" + i +" out of " + roots.size(), MessageDecoration.BOLD, MessageDecoration.UNDERLINE)
-                                    .setEmbed(new EmbedBuilder()
-                                            .setImage(imagelink)
-                                            .setColor(Color.BLACK))
-                                    .send(event.getChannel());
-
-                        }
+                   int b=20;
 
 
 
+
+
+                for (int count = 0; count < b; count++) {
+                    URL urll = null;
+                    try {
+                        urll = new URL(postURL + "&page=" + (1 + count));
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
                     }
-                }
+                    URLConnection requests = null;
+                    try {
+                        requests = urll.openConnection();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        requests.connect();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    JSONParser jpp = new JSONParser(); //from gson
+                    JSONArray roots = null;
+                    try {
+                        roots = (JSONArray) jpp.parse(new InputStreamReader((InputStream) requests.getContent()));
 
 
+                    } catch (IOException | ParseException e) {
+                        e.printStackTrace();
+                    }
 
 
+                    //post no.
+                    if (roots.size() == 0 || postURL.equalsIgnoreCase("https://danbooru.donmai.us/posts.json?tags=")) {
+
+                        System.out.println("No result found");
+                        if (array.size() == 0) {
+                            event.getChannel().sendMessage("No result found");
+                            postase = false;
+                        }
+                        break;
+                    } else {
+
+                        for (int c = 0; c < roots.size(); c++) {
+
+
+                            JSONObject postNo = (JSONObject) roots.get(c);
+                            if (postNo.containsKey("large_file_url")) {
+                                array.add(roots.get(c));
+                            }
+
+                        }
+
+
+//
+                    }
 
 
 //
 
 
+                }
+
+                if (postase){
+                    if (!msgg[msgg.length - 1].equalsIgnoreCase("getall")) {
+
+                        for (int i=0;i<array.size();i++) {
+
+                            Random rand = new Random();
+                            int upperbound = array.size();
+                            int ran = rand.nextInt(upperbound);
+
+                            JSONObject postNo = (JSONObject) array.get(ran);
+
+                            String resultsfound = String.valueOf(array.size());
+
+                            String imagelink;
+                            if (postNo.containsKey("large_file_url")) {
+
+                                imagelink = postNo.get("large_file_url").toString();
+
+                                String relatedTags = postNo.get("tag_string").toString();
+                                String charTag = postNo.get("tag_string_character").toString();
+                                String seriesTag = postNo.get("tag_string_copyright").toString();
+
+//                    System.out.println(imagelink);
+//                    System.out.println("Related Tags: " + relatedTags);
+//                    System.out.println("Character Tag: " + charTag);
+//                    System.out.println("Source Tag: " + seriesTag);
+//                    System.out.println(resultsfound + " results found");
+
+                                new MessageBuilder().setEmbeds(new EmbedBuilder()
+                                        .setImage(imagelink)
+                                        .setFooter("\nCharacter Tags: " + charTag +
+                                                "\nSource Tag: " + seriesTag +
+                                                "\nResults found: " + resultsfound)
+                                        .setColor(Color.BLACK)).send(event.getChannel());
+                                break;
+
+                            }
+                        }
+                    } else {
+                        for (int i = 0; i< array.size();i++) {
+                            JSONObject postNo = (JSONObject) array.get(i);
+
+                            String resultsfound = String.valueOf(array.size());
+
+                            String imagelink;
+                            if (postNo.containsKey("large_file_url")) {
+
+                                imagelink = postNo.get("large_file_url").toString();
+
+                                String relatedTags = postNo.get("tag_string").toString();
+                                String charTag = postNo.get("tag_string_character").toString();
+                                String seriesTag = postNo.get("tag_string_copyright").toString();
+
+//                    System.out.println(imagelink);
+//                    System.out.println("Related Tags: " + relatedTags);
+//                    System.out.println("Character Tag: " + charTag);
+//                    System.out.println("Source Tag: " + seriesTag);
+//                    System.out.println(resultsfound + " results found");
+
+                                new MessageBuilder()
+                                        .append("#" + (i + 1) + " out of " + array.size(), MessageDecoration.BOLD, MessageDecoration.UNDERLINE)
+                                        .setEmbed(new EmbedBuilder()
+                                                .setImage(imagelink)
+                                                .setColor(Color.BLACK))
+                                        .send(event.getChannel());
+
+                            }
+
+                        }
+
+                    }
+                }
+
             }
 
         }
-
     }
 }
 
