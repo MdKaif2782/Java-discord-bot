@@ -197,7 +197,7 @@ public class boorusearch implements MessageCreateListener {
                 boolean postase = true;
 
 
-                   int b=25;
+                   int b=50;
 
 
 
