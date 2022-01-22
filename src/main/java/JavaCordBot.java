@@ -3,7 +3,7 @@ import Banking.*;
 import Commands.APIcommands.*;
 import Commands.APIcommands.NekoLife.NekoHelp;
 import Commands.APIcommands.NekoLife.NekoLifeMention;
-import Commands.APIcommands.NekoLife.NekosDotLife;
+import Commands.APIcommands.NekoLife.NekosDotLifeSFW;
 import Commands.APIcommands.NekoLife.nsfwNekoLIfeMentions;
 import Commands.APIcommands.booru.boorusearch;
 import Commands.admins.Help;
@@ -64,7 +64,7 @@ public class JavaCordBot {
         Bot.addListener(new gettingInvite());
         Bot.addListener(new ServerRegister());
         Bot.addListener(new memeAPI());
-        Bot.addListener(new NekosDotLife());
+        Bot.addListener(new NekosDotLifeSFW());
         Bot.addListener(new NekoHelp());
         Bot.addListener(new NekoLifeMention());
         Bot.addListener(new nsfwNekoLIfeMentions());
@@ -76,6 +76,7 @@ public class JavaCordBot {
         Bot.addListener(new embedListener());
         Bot.addListener(new getALL());
         Bot.addListener(new boorusearch());
+        Bot.addListener(new nhentaitest());
 
 
         System.out.println("Bot is online! Owner:Md_kaif#3392");

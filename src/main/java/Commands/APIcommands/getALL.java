@@ -24,7 +24,11 @@ public class getALL implements MessageCreateListener {
     @Override
     public void onMessageCreate(MessageCreateEvent event) {
         String[] msg = event.getMessageContent().split(" ");
+
+        String kaifSaid = "no horny";
+
         if (msg.length == 4 && msg[0].equalsIgnoreCase("!s")) {
+
             if (msg[3].equalsIgnoreCase("getall") || msg[3].equalsIgnoreCase("sendall")) {
 
 
@@ -46,6 +50,9 @@ public class getALL implements MessageCreateListener {
                 URLarray[3] = "https://api.pushshift.io/reddit/search/submission/?q=" + query + "&subreddit=" + subreddit + "&sort=asc&size=500&sort_type=score";
                 URLarray[4] = "https://api.pushshift.io/reddit/search/submission/?q=" + query + "&subreddit=" + subreddit + "&sort=desc&size=500&sort_type=num_comments";
                 URLarray[5] = "https://api.pushshift.io/reddit/search/submission/?q=" + query + "&subreddit=" + subreddit + "&sort=asc&size=500&sort_type=num_comments";
+
+
+                boolean nsfw = true;
 
                 for (int i = 0; i < URLarray.length; i++) {
 
@@ -73,6 +80,11 @@ public class getALL implements MessageCreateListener {
                         for (int j = 0; j < array.size(); j++) {
                             JSONObject obj = (JSONObject) array.get(j);
 
+                            if (obj.get("over_18").toString().equalsIgnoreCase("false")) {
+                                nsfw = false;
+                            }
+
+
                             if (i == 0) {
                                 link.add(obj.get("url").toString() + "\n");
                             } else if (i == 1) {
@@ -86,14 +98,16 @@ public class getALL implements MessageCreateListener {
                             } else {
                                 link5.add(obj.get("url").toString() + "\n");
                             }
+
+
+                            set.addAll(link);
+                            set.addAll(link1);
+                            set.addAll(link2);
+                            set.addAll(link3);
+                            set.addAll(link4);
+                            set.addAll(link5);
                         }
 
-                        set.addAll(link);
-                        set.addAll(link1);
-                        set.addAll(link2);
-                        set.addAll(link3);
-                        set.addAll(link4);
-                        set.addAll(link5);
 
                     } catch (IOException | ParseException e) {
                         e.printStackTrace();
@@ -116,19 +130,21 @@ public class getALL implements MessageCreateListener {
                 String mynewstring = result.toString();
 
 
-
 //                if (msg[3].equalsIgnoreCase("getall")) {
 //                    event.getChannel().sendMessage("```" + mynewstring + "```");
 //                } else {
 //                    event.getChannel().sendMessage(mynewstring);
 //                }
 
-                    for (int i=0; i< union.length;i++) {
+                if (nsfw) {
+
+                    for (int i = 0; i < union.length; i++) {
+
 
                         new MessageBuilder()
-                                .append("#" + i +" out of " + union.length, MessageDecoration.BOLD, MessageDecoration.UNDERLINE)
+                                .append("#" + i + " out of " + union.length, MessageDecoration.BOLD, MessageDecoration.UNDERLINE)
                                 .setEmbed(new EmbedBuilder()
-                                        .setDescription("[Link:]("+ union[i]+ ")" )
+                                        .setDescription("[Link:](" + union[i] + ")")
                                         .setImage(union[i])
                                         .setColor(Color.BLACK))
                                 .send(event.getChannel());
@@ -138,6 +154,9 @@ public class getALL implements MessageCreateListener {
                     }
 
 //                event.getChannel().sendMessage(String.valueOf(union.length)+ " results found");
+                } else {
+                    event.getChannel().sendMessage("**NSFW features are removed from the system**\n **Stay halal**");
+                }
             }
         }
     }

@@ -119,13 +119,14 @@ public class searchimage implements MessageCreateListener {
 
                     if (nsfw.equalsIgnoreCase("true") && loop == false) {
                         if (isnsfw) {
-                            new MessageBuilder().setEmbeds(new EmbedBuilder()
-                                    .setAuthor("JavaCord", "https://www.reddit.com/user/Md_kaif", "https://i.pinimg.com/564x/78/a9/23/78a923b6e08e58697467007bfdd37745.jpg")
-                                    .setImage(memeURL)
-                                    .setTitle(title)
-                                    .setDescription("[Posted](" + postlink + ") *by u/" + author + " on r/" + subreddit + "*")
-                                    .setFooter("Upvotes: " + ups + "   NSFW: " + nsfw + "    SPOILER: " + spoiler + "\nResponse time: " + (System.currentTimeMillis() - start) + "ms")
-                            ).send(event.getChannel());
+//                            new MessageBuilder().setEmbeds(new EmbedBuilder()
+//                                    .setAuthor("JavaCord", "https://www.reddit.com/user/Md_kaif", "https://i.pinimg.com/564x/78/a9/23/78a923b6e08e58697467007bfdd37745.jpg")
+//                                    .setImage(memeURL)
+//                                    .setTitle(title)
+//                                    .setDescription("[Posted](" + postlink + ") *by u/" + author + " on r/" + subreddit + "*")
+//                                    .setFooter("Upvotes: " + ups + "   NSFW: " + nsfw + "    SPOILER: " + spoiler + "\nResponse time: " + (System.currentTimeMillis() - start) + "ms")
+//                            ).send(event.getChannel());
+                            event.getChannel().sendMessage("**NSFW features are removed from the system**\n **Stay halal**");
                         } else {
                             event.getChannel().sendMessage("The post contains nsfw\nTo get the post send command in the nsfw channel");
                         }

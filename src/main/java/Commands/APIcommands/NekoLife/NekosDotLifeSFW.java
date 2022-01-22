@@ -15,7 +15,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
-public class NekosDotLife implements MessageCreateListener {
+public class NekosDotLifeSFW implements MessageCreateListener {
     @Override
     public void onMessageCreate(MessageCreateEvent event) {
         long start = System.currentTimeMillis();
@@ -26,7 +26,7 @@ public class NekosDotLife implements MessageCreateListener {
             boolean nsfw = event.getChannel().asServerTextChannel().get().isNsfw();
 
 
-            if (nsfw || msg[1].equalsIgnoreCase("smug")
+            if (  msg[1].equalsIgnoreCase("smug")
                     || msg[1].equalsIgnoreCase("baka")
                     || msg[1].equalsIgnoreCase("tickle")
                     || msg[1].equalsIgnoreCase("slap")
@@ -51,6 +51,7 @@ public class NekosDotLife implements MessageCreateListener {
                     || msg[1].equalsIgnoreCase("waifu")
 
                     ){
+
 
                 String sURL = "https://nekos.life/api/v2/img/"+msg[1]; //just a string
 
@@ -82,7 +83,7 @@ public class NekosDotLife implements MessageCreateListener {
                 }
             }
             else {
-                event.getChannel().sendMessage("This is not an NSFW channel\nYou cant use this command here");
+                event.getChannel().sendMessage("**NSFW features are removed from the system**\n **Stay halal**");
             }
 
 

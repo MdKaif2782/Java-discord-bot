@@ -1,5 +1,6 @@
 package notForPublic;
 
+import org.javacord.api.entity.message.Reaction;
 import org.javacord.api.entity.message.embed.EmbedImage;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.listener.message.MessageCreateListener;
@@ -37,6 +38,8 @@ public class embedListener implements MessageCreateListener {
 
                 e.printStackTrace();
             }
+
+
 
 
         }
