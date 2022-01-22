@@ -6,11 +6,14 @@ import org.javacord.api.listener.message.MessageCreateListener;
 public class nhentaitest implements MessageCreateListener {
     @Override
     public void onMessageCreate(MessageCreateEvent event) {
-        event.getChannel().sendMessage("testing");
-        event.getMessage().addReaction("\uD83D\uDE00");
 
-        if (event.getMessage().getReactions().get(0).equals("\uD83D\uDE00")){
-            event.getMessage().edit("it worked");
+        if (event.getMessageContent().equalsIgnoreCase("testreact")) {
+            event.getChannel().sendMessage("testing");
+            event.getMessage().addReaction("\uD83D\uDE00");
+
+            if (event.getMessage().getReactions().get(0).equals("\uD83D\uDE00")) {
+                event.getMessage().edit("it worked");
+            }
         }
     }
 }
