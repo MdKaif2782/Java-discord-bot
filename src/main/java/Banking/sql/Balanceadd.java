@@ -29,7 +29,7 @@ public class Balanceadd implements MessageCreateListener {
                     "user=sql3467490&password=a7leh3zlaA");
 
             Statement stmt=conn.createStatement();
-            ResultSet resultSet = stmt.executeQuery("select * from MainTable "+" where UniqueID="+uniqueid);
+            ResultSet resultSet = stmt.executeQuery("select * from MainTable "+" where UniqueID="+uniqueid+" AND UserID="+userid);
 
             
                 PreparedStatement statement = conn.prepareStatement("UPDATE MainTable " +
