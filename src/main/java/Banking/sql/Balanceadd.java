@@ -53,6 +53,7 @@ public class Balanceadd implements MessageCreateListener {
                             " VALUES (" +UniqueID+UserID+ServerID+ServerName+UserName+"0,0,0,0,0,0,0,0,0,0,0)");
                     statementt.executeUpdate();
                 }
+                conn.close();
                 
 
 
