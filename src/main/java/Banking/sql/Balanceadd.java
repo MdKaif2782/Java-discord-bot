@@ -25,7 +25,8 @@ public class Balanceadd implements MessageCreateListener {
         String User;
 
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://u0enriroil3u3oyl:L3Kum8T41lFklljN2IJW@bwxj0x8ec5ppgpu31cqs-mysql.services.clever-cloud.com:3306/bwxj0x8ec5ppgpu31cqs");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://sql3.freemysqlhosting.net:3306/sql3467490?" +
+                    "user=sql3467490&password=a7leh3zlaA");
 
             Statement stmt=conn.createStatement();
             ResultSet resultSet = stmt.executeQuery("select * from MainTable "+" where UniqueID="+uniqueid);
@@ -49,7 +50,7 @@ public class Balanceadd implements MessageCreateListener {
             } else {
 
                 PreparedStatement statement = conn.prepareStatement("INSERT INTO MainTable " +
-                        " VALUES (" +UniqueID+UserID+ServerID+ServerName+UserName+"0,0,0,0,0,0,0,0,0)");
+                        " VALUES (" +UniqueID+UserID+ServerID+ServerName+UserName+"0,0,0,0,0,0,0,0,0,0,0)");
                 statement.executeUpdate();
 
             }
