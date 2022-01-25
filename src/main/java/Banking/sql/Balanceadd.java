@@ -34,7 +34,7 @@ public class Balanceadd implements MessageCreateListener {
             
                 PreparedStatement statement = conn.prepareStatement("UPDATE MainTable " +
                         " SET Money=Money+3, TotalMoney=TotalMoney+3"+
-                        " WHERE UniqueID="+uniqueid);
+                        " WHERE UniqueID="+uniqueid +" AND UserID="+userid);
                 statement.executeUpdate();
 
 
