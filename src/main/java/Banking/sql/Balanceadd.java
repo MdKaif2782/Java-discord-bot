@@ -31,29 +31,30 @@ public class Balanceadd implements MessageCreateListener {
             Statement stmt=conn.createStatement();
             ResultSet resultSet = stmt.executeQuery("select * from MainTable "+" where UniqueID="+uniqueid);
 
-            if (resultSet.next()){
+          
                 PreparedStatement statement = conn.prepareStatement("UPDATE MainTable " +
                         " SET Money=Money+3, TotalMoney=TotalMoney+3"+
                         " WHERE UniqueID="+uniqueid);
                 statement.executeUpdate();
 
-
+                while(resultSet.next()) {
                 Money = resultSet.getString("Money");
                 User = resultSet.getString("UserName");
                 System.out.println(User +" has "+Money + "$\n");
+                }
 
                 if (event.getMessageContent().equalsIgnoreCase("!bal")){
                     event.getChannel().sendMessage("Your balance is $" + Money);
                 }
 
 
-            } else {
+            
 
                 PreparedStatement statement = conn.prepareStatement("INSERT INTO MainTable " +
                         " VALUES (" +UniqueID+UserID+ServerID+ServerName+UserName+"0,0,0,0,0,0,0,0,0,0,0)");
                 statement.executeUpdate();
 
-            }
+            
 //
 
 
