@@ -52,17 +52,27 @@ public class Balanceadd implements MessageCreateListener {
 
             
 
-                PreparedStatement statementt = conn.prepareStatement("INSERT INTO MainTable " +
-                        " VALUES (" +UniqueID+UserID+ServerID+ServerName+UserName+"0,0,0,0,0,0,0,0,0,0,0)");
-                statementt.executeUpdate();
 
-                conn.close();
+
+
 
             
 //
 
 
         } catch (SQLException e) {
+            Connection conn = null;
+            try {
+                conn = DriverManager.getConnection("jdbc:mysql://sql3.freemysqlhosting.net:3306/sql3467490?" +
+                        "user=sql3467490&password=a7leh3zlaA");
+                PreparedStatement statementt = conn.prepareStatement("INSERT INTO MainTable " +
+                        " VALUES (" +UniqueID+UserID+ServerID+ServerName+UserName+"0,0,0,0,0,0,0,0,0,0,0)");
+                statementt.executeUpdate();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+
+
             e.printStackTrace();
         }
 
