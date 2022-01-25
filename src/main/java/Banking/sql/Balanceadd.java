@@ -13,7 +13,7 @@ public class Balanceadd implements MessageCreateListener {
         String serverid = String.valueOf(event.getServer().get().getId());
         String username = event.getMessageAuthor().getDiscriminatedName();
         String servername = event.getServer().get().getName();
-        String uniqueid = userid+serverid+servername;
+        String uniqueid = serverid+userid;
 
         String UserID =  userid+ ",";
         String UserName = "'" +username + "',";
