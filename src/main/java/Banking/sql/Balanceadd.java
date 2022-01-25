@@ -37,6 +37,7 @@ public class Balanceadd implements MessageCreateListener {
                         " WHERE UniqueID="+uniqueid);
                 statement.executeUpdate();
 
+
                 while(resultSet.next()) {
                     Money = resultSet.getString("Money");
                     User = resultSet.getString("UserName");
@@ -54,6 +55,8 @@ public class Balanceadd implements MessageCreateListener {
                 PreparedStatement statementt = conn.prepareStatement("INSERT INTO MainTable " +
                         " VALUES (" +UniqueID+UserID+ServerID+ServerName+UserName+"0,0,0,0,0,0,0,0,0,0,0)");
                 statementt.executeUpdate();
+
+                conn.close();
 
             
 //
