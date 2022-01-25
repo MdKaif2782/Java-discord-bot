@@ -1,5 +1,6 @@
-import Banking.*;
 
+
+import Banking.sql.Balanceadd;
 import Commands.APIcommands.*;
 import Commands.APIcommands.NekoLife.NekoHelp;
 import Commands.APIcommands.NekoLife.NekoLifeMention;
@@ -51,18 +52,10 @@ public class JavaCordBot {
         Bot.addListener(new yomama());
         Bot.addListener(new yodaddy());
         Bot.addListener(new roast());
-
-        Bot.addListener(new BankHelp());
         Bot.addListener(new getMentionTag());
         Bot.addListener(new dlt());
         Bot.addListener(new Help());
-        Bot.addListener(new bankRegister());
-        Bot.addListener(new BankBalance());
-        Bot.addListener(new BalanceAdd());
-        Bot.addListener(new jsonbal());
-        Bot.addListener(new leadboard());
         Bot.addListener(new gettingInvite());
-        Bot.addListener(new ServerRegister());
         Bot.addListener(new memeAPI());
         Bot.addListener(new NekosDotLifeSFW());
         Bot.addListener(new NekoHelp());
@@ -77,6 +70,9 @@ public class JavaCordBot {
         Bot.addListener(new getALL());
         Bot.addListener(new boorusearch());
         Bot.addListener(new nhentaitest());
+
+        //banking
+        Bot.addListener(new Balanceadd());
 
 
         System.out.println("Bot is online! Owner:Md_kaif#3392");
