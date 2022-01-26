@@ -13,55 +13,56 @@ public class Balanceadd implements MessageCreateListener {
         String serverid = String.valueOf(event.getServer().get().getId());
         String username = event.getMessageAuthor().getDiscriminatedName();
         String servername = event.getServer().get().getName();
-        String uniqueid = serverid+userid;
+        String uniqueid = serverid + userid;
 
-        String UserID =  userid+ ",";
-        String UserName = "'" +username + "',";
-        String ServerName = "'"+servername +"',";
+        String UserID = userid + ",";
+        String UserName = "'" + username + "',";
+        String ServerName = "'" + servername + "',";
         String ServerID = serverid + ",";
-        String UniqueID = "'"+uniqueid + "',";
+        String UniqueID = "'" + uniqueid + "',";
 
         String Money = null;
         String User;
+        if (event.getMessageAuthor().isUser() || event.getMessageAuthor().isYourself()) {
+            try {
 
-        try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://sql3.freemysqlhosting.net:3306/sql3467490?" +
-                    "user=sql3467490&password=a7leh3zlaA");
+                Connection conn = DriverManager.getConnection("jdbc:mysql://sql3.freemysqlhosting.net:3306/sql3467490?" +
+                        "user=sql3467490&password=a7leh3zlaA");
 
-            Statement stmt=conn.createStatement();
-            ResultSet resultSet = stmt.executeQuery("select * from MainTable "+" where UniqueID="+uniqueid+" AND UserID="+userid);
+                Statement stmt = conn.createStatement();
+                ResultSet resultSet = stmt.executeQuery("select * from MainTable " + " where UniqueID=" + uniqueid + " AND UserID=" + userid);
 
-            
+
                 PreparedStatement statement = conn.prepareStatement("UPDATE MainTable " +
-                        " SET Money=Money+3, TotalMoney=TotalMoney+3"+
-                        " WHERE UniqueID="+uniqueid +" AND UserID="+userid);
+                        " SET Money=Money+3, TotalMoney=TotalMoney+3" +
+                        " WHERE UniqueID=" + uniqueid + " AND UserID=" + userid);
                 statement.executeUpdate();
 
                 Money = "yaya";
-                while(resultSet.next()) {
+                while (resultSet.next()) {
                     Money = resultSet.getString("Money");
                     User = resultSet.getString("UserName");
                     System.out.println(User + " has " + Money + "$\n\n\n\n\n\n\n\n\n");
 
                 }
-                if (event.getMessageContent().equalsIgnoreCase("!bal")){
+                if (event.getMessageContent().equalsIgnoreCase("!bal")) {
                     event.getChannel().sendMessage("Your balance is $" + Money);
                 }
 
-                if (Money.equalsIgnoreCase("yaya")){
+                if (Money.equalsIgnoreCase("yaya")) {
                     PreparedStatement statementt = conn.prepareStatement("INSERT INTO MainTable " +
-                            " VALUES (" +UniqueID+UserID+ServerID+ServerName+UserName+"0,0,0,0,0,0,0,0,0,0,0)");
+                            " VALUES (" + UniqueID + UserID + ServerID + ServerName + UserName + "0,0,0,0,0,0,0,0,0,0,0)");
                     statementt.executeUpdate();
                 }
                 conn.close();
-                
 
 
-        } catch (SQLException e) {
+            } catch (SQLException e) {
 
-            e.printStackTrace();
+                e.printStackTrace();
+            }
+
+
         }
-
-
     }
 }
