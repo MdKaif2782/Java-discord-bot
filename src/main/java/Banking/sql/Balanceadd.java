@@ -57,16 +57,6 @@ public class Balanceadd implements MessageCreateListener {
                 
 
 
-            
-
-
-
-
-
-            
-//
-
-
         } catch (SQLException e) {
 
             e.printStackTrace();

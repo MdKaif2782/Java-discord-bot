@@ -1,6 +1,7 @@
 
 
 import Banking.sql.Balanceadd;
+import Banking.sql.robbing;
 import Commands.APIcommands.*;
 import Commands.APIcommands.NekoLife.NekoHelp;
 import Commands.APIcommands.NekoLife.NekoLifeMention;
@@ -73,6 +74,7 @@ public class JavaCordBot {
 
         //banking
         Bot.addListener(new Balanceadd());
+        Bot.addListener(new robbing());
 
 
         System.out.println("Bot is online! Owner:Md_kaif#3392");
