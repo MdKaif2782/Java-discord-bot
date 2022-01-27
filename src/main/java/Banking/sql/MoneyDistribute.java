@@ -3,6 +3,7 @@ package Banking.sql;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.listener.message.MessageCreateListener;
 
+import java.math.BigDecimal;
 import java.sql.*;
 
 public class MoneyDistribute implements MessageCreateListener {
@@ -20,23 +21,35 @@ public class MoneyDistribute implements MessageCreateListener {
                 ResultSet resultSet = stmt.executeQuery("select * from MainTable"+" where UserID=924608474409742357 AND ServerID="+ServerID );
 
                 long bankbal=0;
+                long banks;
+                String baank;
+                BigDecimal bank = null;
                 while (resultSet.next()){
                     String bankba = resultSet.getString("Money");
-                    bankbal= Long.parseLong(bankba);
+                     bank = resultSet.getBigDecimal("Money");
+
+                    baank = String.valueOf(bank);
+                    bankbal= Long.parseLong(baank)*10;
                 }
 
+                System.out.println(bank);
+                long minus = (long) (bankbal*0.9);
+                System.out.println(minus);
                 PreparedStatement statement = conn.prepareStatement("UPDATE MainTable" +
-                        " SET Money=Money-Money*0.9"+
+                        " SET Money=Money-"+minus/10+
                         " WHERE UserID=924608474409742357 AND ServerID="+ServerID);
                 statement.executeUpdate();
 
                 ResultSet resultSets = stmt.executeQuery("select * from MainTable"+" where ServerID="+ServerID );
 
                 int i=0;
-                while (resultSet.next()){
+                while (resultSets.next()){
                     i++;
                 }
-                long givenMoneytoEach = bankbal/i;
+                System.out.println(bankbal);
+                System.out.println(i+"\n\n\n\n\n\n");
+
+                long givenMoneytoEach = (minus/i);
 
                 PreparedStatement stttm1 = conn.prepareStatement("UPDATE MainTable" +
                         " SET Money=Money+"+givenMoneytoEach+
