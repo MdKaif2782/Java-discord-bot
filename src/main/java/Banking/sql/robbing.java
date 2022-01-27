@@ -211,7 +211,7 @@ public class robbing implements MessageCreateListener {
                 }
             } else {
                 System.out.println("You finished your session\nWait "+ (maxtime-difference) +" mins to continue");
-                event.getChannel().sendMessage("You finished your session\nWait "+ (maxtime-difference) +" mins to continue");
+                event.getChannel().sendMessage("You finished your session\nWait "+ (maxtime-difference)/60 +" min"+(maxtime-difference)%60+"sec " +"to continue");
             }
 
             try {
