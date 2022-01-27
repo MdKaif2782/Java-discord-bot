@@ -89,7 +89,7 @@ public class robbing implements MessageCreateListener {
                     int ran = random.nextInt(100);
 
                     if (!event.getMessage().getMentionedUsers().get(0).isBot()) {
-                        if (ran < 75) {
+                        if (ran < 65) {
 
                             try {
                                 Connection conne = DriverManager.getConnection("jdbc:mysql://sql3.freemysqlhosting.net:3306/sql3467490?" +
@@ -213,11 +213,7 @@ public class robbing implements MessageCreateListener {
             } else {
                 System.out.println("You finished your session\nWait "+ (maxtime-difference) +" mins to continue");
                 event.getChannel().sendMessage("You finished your session\nWait "+ (maxtime-difference)/60 +" min "+(maxtime-difference)%60+" sec " +"to continue");
-		try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+		
             }
 
             try {
