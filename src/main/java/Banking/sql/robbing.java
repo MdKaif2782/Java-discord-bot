@@ -200,6 +200,7 @@ public class robbing implements MessageCreateListener {
                         }
                         try {
                             statement1.executeUpdate();
+				conn.close();
                         } catch (SQLException e) {
                             e.printStackTrace();
                         }
@@ -211,7 +212,12 @@ public class robbing implements MessageCreateListener {
                 }
             } else {
                 System.out.println("You finished your session\nWait "+ (maxtime-difference) +" mins to continue");
-                event.getChannel().sendMessage("You finished your session\nWait "+ (maxtime-difference)/60 +" min"+(maxtime-difference)%60+"sec " +"to continue");
+                event.getChannel().sendMessage("You finished your session\nWait "+ (maxtime-difference)/60 +" min "+(maxtime-difference)%60+" sec " +"to continue");
+		try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
             }
 
             try {
