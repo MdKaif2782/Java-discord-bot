@@ -29,14 +29,14 @@ public class MoneyDistribute implements MessageCreateListener {
                      bank = resultSet.getBigDecimal("Money");
 
                     baank = String.valueOf(bank);
-                    bankbal= Long.parseLong(baank)*10;
+                    bankbal= Long.parseLong(baank);
                 }
 
                 System.out.println(bank);
                 long minus = (long) (bankbal*0.9);
                 System.out.println(minus);
                 PreparedStatement statement = conn.prepareStatement("UPDATE MainTable" +
-                        " SET Money=Money-"+minus/10+
+                        " SET Money=Money-"+minus+
                         " WHERE UserID=924608474409742357 AND ServerID="+ServerID);
                 statement.executeUpdate();
 
