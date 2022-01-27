@@ -51,7 +51,7 @@ public class Balanceadd implements MessageCreateListener {
 
                 if (Money.equalsIgnoreCase("yaya")) {
                     PreparedStatement statementt = conn.prepareStatement("INSERT INTO MainTable " +
-                            " VALUES (" + UniqueID + UserID + ServerID + ServerName + UserName + "0,0,0,0,0,0,0,0,0,0,0)");
+                            " VALUES (" + UniqueID + UserID + ServerID + ServerName + UserName + "0,0,0,0,0,0,0,0,0,0,0,0,0)");
                     statementt.executeUpdate();
                 }
                 conn.close();
