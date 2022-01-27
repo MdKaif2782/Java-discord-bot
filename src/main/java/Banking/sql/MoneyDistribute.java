@@ -43,6 +43,8 @@ public class MoneyDistribute implements MessageCreateListener {
                         " WHERE ServerID="+ServerID);
                 stttm1.executeUpdate();
 
+                event.getChannel().sendMessage(givenMoneytoEach+"$ is given to each User\nTotal Distributed $"+bankbal*0.9);
+
                 conn.close();
 
 
