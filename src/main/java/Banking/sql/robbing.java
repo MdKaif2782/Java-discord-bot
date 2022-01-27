@@ -89,7 +89,7 @@ public class robbing implements MessageCreateListener {
                     int ran = random.nextInt(100);
 
                     if (!event.getMessage().getMentionedUsers().get(0).isBot()) {
-                        if (ran < 25) {
+                        if (ran < 75) {
 
                             try {
                                 Connection conne = DriverManager.getConnection("jdbc:mysql://sql3.freemysqlhosting.net:3306/sql3467490?" +
