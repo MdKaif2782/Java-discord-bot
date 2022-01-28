@@ -237,6 +237,13 @@ public class robbing implements MessageCreateListener {
             } else {
                 System.out.println("You finished your session\nWait "+ (maxtime-difference) +" mins to continue");
                 event.getChannel().sendMessage("You finished your session\nWait "+ (maxtime-difference)/60 +" min "+(maxtime-difference)%60+" sec " +"to continue");
+
+                new MessageBuilder().setEmbeds(new EmbedBuilder()
+                                .setTitle("COOLDOWN TIME")
+                                .setThumbnail("https://c.tenor.com/GaOy-0e7c7kAAAAM/times-up-time-to-stop.gif")
+                        .setDescription("**You finished your session\n**Wait "+ (maxtime-difference)/60 +" min "+(maxtime-difference)%60+" sec " +"to continue**\n" +
+                                ":alarm_clock: :alarm_clock: :alarm_clock: :alarm_clock: :alarm_clock: ")
+                        .setColor(Color.RED)).send(event.getChannel());
                 try {
                     conn.close();
                 } catch (SQLException e) {
