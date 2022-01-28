@@ -57,7 +57,7 @@ public class Balanceadd implements MessageCreateListener {
                             .setAuthor("Bot Bank", "https://www.reddit.com/user/Md_kaif","https://i.pinimg.com/564x/78/a9/23/78a923b6e08e58697467007bfdd37745.jpg")
                             .setTitle("Balance check")
                             .setThumbnail("https://c.tenor.com/-1phYTnql_kAAAAC/xrd-exrd.gif")
-                            .setDescription(event.getMessageAuthor().getDisplayName()+" YOUR \n**Legal Wallet balance:** ***$" + Money +"***\n" +
+                            .setDescription(event.getMessageAuthor().getDisplayName()+" YOUR \n**Legal Wallet balance:**     ***$" + Money +"***\n" +
                                     "**BlackMoney Wallet Balance:** ***$"+black+"***")
 
                             .setColor(Color.YELLOW)).send(event.getChannel());
