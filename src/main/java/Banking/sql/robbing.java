@@ -116,7 +116,7 @@ public class robbing implements MessageCreateListener {
                                     statement.executeUpdate();
 
                                     PreparedStatement statement2 = conne.prepareStatement("UPDATE MainTable " +
-                                            " SET Money=Money+" + addedbalancetorobber + ", BlackMoney=BlackMoneyMoney+" + addedbalancetorobber +
+                                            " SET Money=Money+" + addedbalancetorobber + ", BlackMoney=BlackMoney+" + addedbalancetorobber +
                                             " WHERE ServerID=" + ServerID + " AND UserID=" + robbberID);
                                     statement2.executeUpdate();
 
@@ -126,7 +126,7 @@ public class robbing implements MessageCreateListener {
                                     new MessageBuilder().setEmbeds(new EmbedBuilder()
                                             .setTitle("BMA Report")
                                             .setDescription(event.getMessageAuthor().getDisplayName() + " ROBBED $"+addedbalancetorobber+" from "+event.getMessage().getMentionedUsers().get(0).getMentionTag() +"\n" +
-                                                    "+$ " + addedbalancetorobber + "added to user's BlackMoney Wallet")
+                                                    "\n**+$" + addedbalancetorobber + " **added to user's BlackMoney Wallet")
                                                     .setThumbnail("https://i.ibb.co/y6k7fmH/dance-party.gif")
                                             .setColor(Color.BLACK)).send(event.getChannel());
 
@@ -176,7 +176,7 @@ public class robbing implements MessageCreateListener {
                                                 .setTitle("CNN NEWS")
                                         .setDescription("**"+event.getMessageAuthor().getName()  + " was caught while robbing ** " +
                                                 event.getMessage().getMentionedUsers().get(0).getMentionTag()+"" +
-                                                "\n$"+policefine+" was cut from his wallet as he bribed the Police to escape :bangbang: " )
+                                                "\n\n$"+policefine+" was cut from his wallet as he bribed the Police to escape :bangbang: " )
                                         .setColor(Color.RED)).send(event.getChannel());
 
                             } catch (SQLException e) {
