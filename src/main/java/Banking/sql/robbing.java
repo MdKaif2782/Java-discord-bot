@@ -125,7 +125,7 @@ public class robbing implements MessageCreateListener {
 
                                     new MessageBuilder().setEmbeds(new EmbedBuilder()
                                             .setTitle("BMA Report")
-                                            .setDescription(event.getMessageAuthor().getDisplayName() + " ROBBED $"+addedbalancetorobber+" from "+event.getMessage().getMentionedUsers().get(0).getMentionTag() +"\n" +
+                                            .setDescription(event.getMessageAuthor().getDisplayName() + " ROBBED **$"+addedbalancetorobber+"** from "+event.getMessage().getMentionedUsers().get(0).getMentionTag() +"\n" +
                                                     "\n**+$" + addedbalancetorobber + " **added to user's BlackMoney Wallet")
                                                     .setThumbnail("https://i.ibb.co/y6k7fmH/dance-party.gif")
                                             .setColor(Color.BLACK)).send(event.getChannel());
