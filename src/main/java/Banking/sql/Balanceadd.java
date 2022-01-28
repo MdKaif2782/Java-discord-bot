@@ -1,8 +1,11 @@
 package Banking.sql;
 
+import org.javacord.api.entity.message.MessageBuilder;
+import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.listener.message.MessageCreateListener;
 
+import java.awt.*;
 import java.sql.*;
 
 public class Balanceadd implements MessageCreateListener {
@@ -46,7 +49,17 @@ public class Balanceadd implements MessageCreateListener {
 
                 }
                 if (event.getMessageContent().equalsIgnoreCase("!bal")) {
-                    event.getChannel().sendMessage("Your balance is $" + Money);
+
+                    new MessageBuilder().setEmbeds(new EmbedBuilder()
+
+                            .setAuthor("Bot Bank", "https://www.reddit.com/user/Md_kaif","https://i.pinimg.com/564x/78/a9/23/78a923b6e08e58697467007bfdd37745.jpg")
+                            .setTitle("Balance check")
+                            .setThumbnail("https://c.tenor.com/-1phYTnql_kAAAAC/xrd-exrd.gif")
+                            .setDescription(event.getMessageAuthor().getDisplayName()+" your Wallet balance is: **$" + Money +"**")
+
+                            .setColor(Color.YELLOW)).send(event.getChannel());
+
+ //                   event.getChannel().sendMessage("Your balance is $" + Money);
                 }
 
                 if (Money.equalsIgnoreCase("yaya")) {
