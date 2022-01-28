@@ -241,7 +241,7 @@ public class robbing implements MessageCreateListener {
                 new MessageBuilder().setEmbeds(new EmbedBuilder()
                                 .setTitle("COOLDOWN TIME")
                                 .setThumbnail("https://c.tenor.com/GaOy-0e7c7kAAAAM/times-up-time-to-stop.gif")
-                        .setDescription("**You finished your session\n**Wait "+ (maxtime-difference)/60 +" min "+(maxtime-difference)%60+" sec " +"to continue**\n" +
+                        .setDescription("**You finished your session\n **Wait "+ (maxtime-difference)/60 +" min "+(maxtime-difference)%60+" sec " +"to continue**\n\n\n" +
                                 ":alarm_clock: :alarm_clock: :alarm_clock: :alarm_clock: :alarm_clock: ")
                         .setColor(Color.RED)).send(event.getChannel());
                 try {
