@@ -1,8 +1,11 @@
 package Banking.sql;
 
+import org.javacord.api.entity.message.MessageBuilder;
+import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.listener.message.MessageCreateListener;
 
+import java.awt.*;
 import java.math.BigDecimal;
 import java.sql.*;
 import java.util.Random;
@@ -113,16 +116,26 @@ public class robbing implements MessageCreateListener {
                                     statement.executeUpdate();
 
                                     PreparedStatement statement2 = conne.prepareStatement("UPDATE MainTable " +
-                                            " SET Money=Money+" + addedbalancetorobber + ", TotalMoney=TotalMoney+" + addedbalancetorobber +
+                                            " SET Money=Money+" + addedbalancetorobber + ", BlackMoney=BlackMoneyMoney+" + addedbalancetorobber +
                                             " WHERE ServerID=" + ServerID + " AND UserID=" + robbberID);
                                     statement2.executeUpdate();
 
 
-                                    event.getChannel().sendMessage("You robbed " + addedbalancetorobber + "$ from" + event.getMessage().getMentionedUsers().get(0).getMentionTag());
+                           //         event.getChannel().sendMessage("You robbed " + addedbalancetorobber + "$ from" + event.getMessage().getMentionedUsers().get(0).getMentionTag());
+
+                                    new MessageBuilder().setEmbeds(new EmbedBuilder()
+                                            .setTitle("BMA Report")
+                                            .setDescription(event.getMessageAuthor().getDisplayName() + " ROBBED $"+addedbalancetorobber+" from "+event.getMessage().getMentionedUsers().get(0).getMentionTag() +"\n" +
+                                                    "+$ " + addedbalancetorobber + "added to user's BlackMoney Wallet")
+                                                    .setThumbnail("https://c.tenor.com/-XtjhGyM_F0AAAAC/dance-party.gif")
+                                            .setColor(Color.BLACK)).send(event.getChannel());
+
 
 
                                 } else {
-                                    event.getChannel().sendMessage("you cant rob from poors");
+                                    new MessageBuilder().setEmbeds(new EmbedBuilder()
+                                            .setDescription("**"  + " You cant rob poors! ** :no_entry_sign:")
+                                            .setColor(Color.RED)).send(event.getChannel());
                                 }
 
                                 conne.close();
@@ -158,9 +171,11 @@ public class robbing implements MessageCreateListener {
 
                                 coni.close();
 
-                                event.getChannel().sendMessage("You got cought by police while robbing " + event.getMessage().getMentionedUsers().get(0).getMentionTag() + "" +
-                                        "\nYou had to bribe police " + policefine + "$ to escape\n" +
-                                        "What a pathetic looser you are hghghghghghg");
+                                new MessageBuilder().setEmbeds(new EmbedBuilder()
+                                        .setDescription("**"+event.getMessageAuthor().getName()  + " was caught while robbing ** " +
+                                                event.getMessage().getMentionedUsers().get(0).getMentionTag()+"" +
+                                                "\n$"+policefine+" was cut from his wallet as he bribed the Police to escape :bangbang: " )
+                                        .setColor(Color.RED)).send(event.getChannel());
 
                             } catch (SQLException e) {
                                 e.printStackTrace();
@@ -169,7 +184,9 @@ public class robbing implements MessageCreateListener {
                         }
 
                     } else {
-                        event.getChannel().sendMessage("You can't rob bots");
+                        new MessageBuilder().setEmbeds(new EmbedBuilder()
+                                .setDescription("**"  + " You cant rob bots! ** :no_entry_sign:")
+                                .setColor(Color.RED)).send(event.getChannel());
                         try {
                             conn.close();
                         } catch (SQLException e) {

@@ -10,7 +10,7 @@ public class msgdelete implements MessageCreateListener {
         String a;
         String[] msg =  event.getMessageContent().split(" ");
 
-        if (msg[0].equalsIgnoreCase("!getavatar")) {
+        if (msg[0].equalsIgnoreCase("!avatar")) {
 
             if (msg.length > 1) {
 
