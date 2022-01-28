@@ -172,6 +172,8 @@ public class robbing implements MessageCreateListener {
                                 coni.close();
 
                                 new MessageBuilder().setEmbeds(new EmbedBuilder()
+                                                .setThumbnail("https://i.ibb.co/1rSFYkK/ssssss.png")
+                                                .setTitle("CNN NEWS")
                                         .setDescription("**"+event.getMessageAuthor().getName()  + " was caught while robbing ** " +
                                                 event.getMessage().getMentionedUsers().get(0).getMentionTag()+"" +
                                                 "\n$"+policefine+" was cut from his wallet as he bribed the Police to escape :bangbang: " )
