@@ -127,7 +127,7 @@ public class robbing implements MessageCreateListener {
                                             .setTitle("BMA Report")
                                             .setDescription(event.getMessageAuthor().getDisplayName() + " ROBBED $"+addedbalancetorobber+" from "+event.getMessage().getMentionedUsers().get(0).getMentionTag() +"\n" +
                                                     "+$ " + addedbalancetorobber + "added to user's BlackMoney Wallet")
-                                                    .setThumbnail("https://c.tenor.com/-XtjhGyM_F0AAAAC/dance-party.gif")
+                                                    .setThumbnail("https://i.ibb.co/y6k7fmH/dance-party.gif")
                                             .setColor(Color.BLACK)).send(event.getChannel());
 
 
