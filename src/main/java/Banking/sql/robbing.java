@@ -176,7 +176,7 @@ public class robbing implements MessageCreateListener {
                                                 .setTitle("CNN NEWS")
                                         .setDescription("**"+event.getMessageAuthor().getName()  + " was caught while robbing ** " +
                                                 event.getMessage().getMentionedUsers().get(0).getMentionTag()+"" +
-                                                "\n\n$"+policefine+" was cut from his wallet as he bribed the Police to escape :bangbang: " )
+                                                "\n\n**$"+policefine+"** was cut from his wallet as he bribed the Police to escape :bangbang: " )
                                         .setColor(Color.RED)).send(event.getChannel());
 
                             } catch (SQLException e) {
