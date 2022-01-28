@@ -15,7 +15,7 @@ public class msgdelete implements MessageCreateListener {
             if (msg.length > 1) {
 
                 for (User mentionedUser : event.getMessage().getMentionedUsers()) {
-                    a = String.valueOf(mentionedUser.getAvatar().getUrl());
+                    a = String.valueOf(mentionedUser.getAvatar(1024).getUrl());
                     event.getChannel().sendMessage(a);
                 }
             } else {
