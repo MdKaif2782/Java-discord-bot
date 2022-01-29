@@ -38,7 +38,7 @@ public class JavaCordBot {
         .setToken(token1+token2)
         .login().join();
 
-        Bot.updateActivity(ActivityType.LISTENING, "helicopter helicopter");
+        Bot.updateActivity(ActivityType.PLAYING, "Adamjee te chance painai lol");
         Bot.updateStatus(UserStatus.IDLE);
 
         Bot.addListener(new PingPong());
