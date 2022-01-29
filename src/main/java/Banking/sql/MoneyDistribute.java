@@ -62,7 +62,7 @@ public class MoneyDistribute implements MessageCreateListener {
                     e.printStackTrace();
                 }
             }
-            long maxtime = 24*60*60;
+            long maxtime = 10*60*60;
             if (difference >= maxtime) {
 
                 Connection connection1 = null;
