@@ -9,6 +9,7 @@ import Commands.APIcommands.NekoLife.NekoLifeMention;
 import Commands.APIcommands.NekoLife.NekosDotLifeSFW;
 import Commands.APIcommands.NekoLife.nsfwNekoLIfeMentions;
 import Commands.APIcommands.booru.boorusearch;
+import Commands.APIcommands.nhentai.ResponseTest;
 import Commands.admins.Help;
 import Commands.admins.dlt;
 import Commands.admins.kick;
@@ -41,6 +42,7 @@ public class JavaCordBot {
         Bot.updateActivity(ActivityType.PLAYING, "Adamjee te chance painai lol");
         Bot.updateStatus(UserStatus.IDLE);
 
+
         Bot.addListener(new PingPong());
         Bot.addListener(new DoMath());
         Bot.addListener(new Rate());
@@ -72,6 +74,7 @@ public class JavaCordBot {
         Bot.addListener(new getALL());
         Bot.addListener(new boorusearch());
         Bot.addListener(new nhentaitest());
+        Bot.addListener(new ResponseTest());
 
         //banking
         Bot.addListener(new Balanceadd());
