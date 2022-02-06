@@ -18,22 +18,23 @@ public class ResponseTest implements MessageCreateListener {
     @Override
     public void onMessageCreate(MessageCreateEvent event) {
 
-        AtomicReference<AtomicInteger> i = new AtomicReference<>(new AtomicInteger());
-        if (event.getMessageContent().equalsIgnoreCase("!testr")) {
+
+
+
+            String[] msg = event.getMessageContent().split(" ");
+        if (msg[0].equalsIgnoreCase("!nhentai")) {
+            AtomicReference<AtomicInteger> i = new AtomicReference<>(new AtomicInteger());
 
             //Nhentai Grabbing
             var nHentai = new NHentai();
-            var gallery = nHentai.galleries().getGallery(177013);
+            var gallery = nHentai.galleries().getGallery(Long.parseLong(msg[1]));
 
             List<GalleryPage> pages = gallery.get().getPages();
 
 
 
 
-            new MessageBuilder().setEmbeds(new EmbedBuilder()
-                    .setDescription("**Checking connection....**")
-                            .setImage("https://media4.giphy.com/media/g7GKcSzwQfugw/giphy.gif")
-                    .setColor(Color.PINK)).send(event.getChannel()).thenAccept(message -> {
+            event.getChannel().sendMessage("Checking connection....\nhttps://media4.giphy.com/media/g7GKcSzwQfugw/giphy.gif").thenAccept(message -> {
                 message.addReaction("\uD83D\uDC48");
                 message.addReaction("\uD83D\uDC49");
 
@@ -47,9 +48,8 @@ public class ResponseTest implements MessageCreateListener {
 //                            reactionEvent.editMessage("Counting -- " + i);
 
                             int pageno = i.get().get();
-                            reactionEvent.editMessage(new EmbedBuilder()
-                                            .setFooter("Page: "+pageno+" out of "+ pages.size())
-                                    .setImage(pages.get(pageno).getImage().getDownloadUrl()));
+                            reactionEvent.editMessage("*Page: "+pageno+" out of "+ pages.size()+"* \n" +
+                                    pages.get(pageno).getImage().getDownloadUrl());
 
                             System.out.println(reactionEvent.getCount().get());
 
@@ -67,9 +67,8 @@ public class ResponseTest implements MessageCreateListener {
                            i.get().getAndIncrement();
 //                           reactionremove.editMessage("Counting -- " + i);
                            int pageno = i.get().get();
-                           reactionremove.editMessage(new EmbedBuilder()
-                                   .setFooter("Page: "+pageno+" out of "+ pages.size())
-                                   .setImage(pages.get(pageno).getImage().getDownloadUrl()));
+                           reactionremove.editMessage("*Page: "+pageno+" out of "+ pages.size()+"* \n" +
+                                   pages.get(pageno).getImage().getDownloadUrl());
 
 
 
@@ -85,9 +84,8 @@ public class ResponseTest implements MessageCreateListener {
                         i.get().getAndDecrement();
 //                        reactionEvent.editMessage("Counting -- " + i);
                         int pageno = i.get().get();
-                        reactionEvent.editMessage(new EmbedBuilder()
-                                .setFooter("Page: "+pageno+" out of "+ pages.size())
-                                .setImage(pages.get(pageno).getImage().getDownloadUrl()));
+                        reactionEvent.editMessage("*Page: "+pageno+" out of "+ pages.size()+"* \n" +
+                                pages.get(pageno).getImage().getDownloadUrl());
 
 
                         System.out.println(reactionEvent.getCount().get());
@@ -105,10 +103,8 @@ public class ResponseTest implements MessageCreateListener {
 //                            reactionremove.editMessage("Counting -- " + i);
 
                             int pageno = i.get().get();
-                            reactionremove.editMessage(new EmbedBuilder()
-                                    .setFooter("Page: "+pageno+" out of "+ pages.size())
-                                    .setImage(pages.get(pageno).getImage().getDownloadUrl()));
-
+                            reactionremove.editMessage(
+                                    pages.get(pageno).getImage().getDownloadUrl()+" \n*Page: "+pageno+" out of "+ pages.size()+"* \n");
 
 
 
