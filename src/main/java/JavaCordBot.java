@@ -2,6 +2,9 @@
 
 import Banking.sql.Balanceadd;
 import Banking.sql.MoneyDistribute;
+import Banking.sql.postgress.AcCreate;
+import Banking.sql.postgress.BalAdd;
+import Banking.sql.postgress.CheckBal;
 import Banking.sql.robbing;
 import Commands.APIcommands.*;
 import Commands.APIcommands.NekoLife.NekoHelp;
@@ -36,7 +39,8 @@ public class JavaCordBot {
         String token2 = "YchCvg.A0s-BnJ5_XmULW2GwyAj6mpY058";
 
         DiscordApi Bot = new DiscordApiBuilder()
-        .setToken(token1+token2)
+//        .setToken(token1+token2)
+                .setToken("OTI0NTc4NzcwNzg1MDEzODAw.YcgnFA.3M_UyiMaeQQIRV7JCnIciqQS6rs")
         .login().join();
 
         Bot.updateActivity(ActivityType.PLAYING, "Adamjee te chance painai lol");
@@ -77,9 +81,14 @@ public class JavaCordBot {
         Bot.addListener(new ResponseTest());
 
         //banking
-        Bot.addListener(new Balanceadd());
-        Bot.addListener(new robbing());
-        Bot.addListener(new MoneyDistribute());
+//        Bot.addListener(new Balanceadd());
+//        Bot.addListener(new robbing());
+//        Bot.addListener(new MoneyDistribute());
+
+        //postgres bankking
+        Bot.addListener(new AcCreate());
+        Bot.addListener(new CheckBal());
+        Bot.addListener(new BalAdd());
 
 
         System.out.println("Bot is online! Owner:Md_kaif#3392");
