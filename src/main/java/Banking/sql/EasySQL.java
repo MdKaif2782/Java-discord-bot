@@ -5,7 +5,7 @@ import java.sql.*;
 public class EasySQL {
         String ServerID,UserID;
         Connection conn = DriverManager.getConnection(
-                "jdbc:postgres://castor.db.elephantsql.com:5432/nowgtsdo",
+                "jdbc:postgresql://castor.db.elephantsql.com:5432/nowgtsdo",
                 "nowgtsdo",
                 "aCTKxGuRAZx6HNJHNF2HFDY2GUAp-ydO");
 
