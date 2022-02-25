@@ -45,7 +45,14 @@ public class EasySQL {
             }
             return balance;
         }
-
+    public long getBlackMoney() throws SQLException {
+        long balance = 0;
+        ResultSet rs = resultSet();
+        while (rs.next()){
+            balance = Long.parseLong(rs.getString("blackmoney"));
+        }
+        return balance;
+    }
     public String getUserName() throws SQLException {
         String UserName = null;
         ResultSet rs1 = resultSet();
