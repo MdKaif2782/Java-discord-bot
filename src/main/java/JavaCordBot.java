@@ -39,8 +39,8 @@ public class JavaCordBot {
         String token2 = "YchCvg.A0s-BnJ5_XmULW2GwyAj6mpY058";
 
         DiscordApi Bot = new DiscordApiBuilder()
-//        .setToken(token1+token2)
-                .setToken("OTI0NTc4NzcwNzg1MDEzODAw.YcgnFA.3M_UyiMaeQQIRV7JCnIciqQS6rs")
+        .setToken(token1+token2)
+//                .setToken("OTI0NTc4NzcwNzg1MDEzODAw.YcgnFA.3M_UyiMaeQQIRV7JCnIciqQS6rs")
         .login().join();
 
         Bot.updateActivity(ActivityType.PLAYING, "Adamjee te chance painai lol");
