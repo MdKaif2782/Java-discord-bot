@@ -25,7 +25,7 @@ public class boorusearch implements MessageCreateListener {
     public void onMessageCreate(MessageCreateEvent event) {
         String[] msgg = event.getMessageContent().split(" ");
 
-        String kaifSaif = "no horny";
+        String kaifSaif = "yes horny";
 
 
             if (msgg[0].equalsIgnoreCase("!booru")) {
@@ -201,7 +201,7 @@ public class boorusearch implements MessageCreateListener {
                     boolean postase = true;
 
 
-                    int b = 20;
+                    int b = 25;
 
 
                     for (int count = 0; count < b; count++) {
