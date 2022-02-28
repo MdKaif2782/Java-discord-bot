@@ -1,9 +1,0 @@
-{
-  "build": {
-    "type": "gradle",
-    "goal": "assemble"
-  },
-  "deploy": {
-    "jarName": "./build/libs/JavaCordBot-1.0-all.jar"
-  }
-}
