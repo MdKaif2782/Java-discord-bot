@@ -319,11 +319,6 @@ public class boorusearch implements MessageCreateListener {
                                     String charTag = postNo.get("tag_string_character").toString();
                                     String seriesTag = postNo.get("tag_string_copyright").toString();
 
-//                    System.out.println(imagelink);
-//                    System.out.println("Related Tags: " + relatedTags);
-//                    System.out.println("Character Tag: " + charTag);
-//                    System.out.println("Source Tag: " + seriesTag);
-//                    System.out.println(resultsfound + " results found");
 
                                     new MessageBuilder()
                                             .append("#" + (i + 1) + " out of " + array.size(), MessageDecoration.BOLD, MessageDecoration.UNDERLINE)
