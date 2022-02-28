@@ -29,7 +29,7 @@ public class boorusearch implements MessageCreateListener {
 
 
             if (msgg[0].equalsIgnoreCase("!booru")) {
-                if (kaifSaif.equalsIgnoreCase("yes horny")) {
+              
 
                 event.getChannel().type();
 
@@ -341,10 +341,7 @@ public class boorusearch implements MessageCreateListener {
 
                 }
 
-            }else {
-                    event.getChannel().sendMessage("**NSFW features are removed from the system**\n **Stay halal**");
-
-                }
+            
         }
     }
 }
