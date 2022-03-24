@@ -329,8 +329,10 @@ public class boorusearch implements MessageCreateListener {
 //                    System.out.println("Source Tag: " + seriesTag);
 //                    System.out.println(resultsfound + " results found");
                             boolean nsfwpost = false;
-                            if (!postNo.get("rating").toString().equalsIgnoreCase("s")){
+                            if (postNo.get("rating").toString().equalsIgnoreCase("e") || postNo.get("rating").toString().equalsIgnoreCase("q")){
                                 nsfwpost = true;
+                            } else if(postNo.get("rating").toString().equalsIgnoreCase("s")){
+                                nsfwpost = false;
                             }
                             if (nsfwchannel && nsfwpost){
                                 new MessageBuilder().setEmbeds(new EmbedBuilder()
