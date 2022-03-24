@@ -25,7 +25,7 @@ public class boorusearch implements MessageCreateListener {
     public void onMessageCreate(MessageCreateEvent event) {
         String[] msg = event.getMessageContent().split(" ");
         String kaifSaif = "yes horny";
-
+        boolean nsfwchannel = event.getChannel().asServerTextChannel().get().isNsfw();
 
         if (msg[0].equalsIgnoreCase("!booru")) {
 
@@ -328,14 +328,28 @@ public class boorusearch implements MessageCreateListener {
 //                    System.out.println("Character Tag: " + charTag);
 //                    System.out.println("Source Tag: " + seriesTag);
 //                    System.out.println(resultsfound + " results found");
+                            boolean nsfwpost = false;
+                            if (!postNo.get("rating").toString().equalsIgnoreCase("s")){
+                                nsfwpost = true;
+                            }
+                            if (nsfwchannel && nsfwpost){
+                                new MessageBuilder().setEmbeds(new EmbedBuilder()
+                                        .setImage(imagelink)
+                                        .setFooter("\nCharacter Tags: " + charTag +
+                                                "\nSource Tag: " + seriesTag +
+                                                "\nResults found: " + resultsfound)
+                                        .setColor(Color.BLACK)).send(event.getChannel());
+                                break;
+                            } else if (!nsfwchannel && !nsfwpost){
+                                new MessageBuilder().setEmbeds(new EmbedBuilder()
+                                        .setImage(imagelink)
+                                        .setFooter("\nCharacter Tags: " + charTag +
+                                                "\nSource Tag: " + seriesTag +
+                                                "\nResults found: " + resultsfound)
+                                        .setColor(Color.BLACK)).send(event.getChannel());
+                                break;
+                            }
 
-                                    new MessageBuilder().setEmbeds(new EmbedBuilder()
-                                            .setImage(imagelink)
-                                            .setFooter("\nCharacter Tags: " + charTag +
-                                                    "\nSource Tag: " + seriesTag +
-                                                    "\nResults found: " + resultsfound)
-                                            .setColor(Color.BLACK)).send(event.getChannel());
-                                    break;
 
                                 }
 
