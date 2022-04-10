@@ -43,7 +43,7 @@ public class JavaCordBot {
 //                .setToken("OTI0NTc4NzcwNzg1MDEzODAw.YcgnFA.3M_UyiMaeQQIRV7JCnIciqQS6rs")
         .login().join();
 
-        Bot.updateActivity(ActivityType.PLAYING, "Adamjee te chance painai lol");
+        Bot.updateActivity(ActivityType.PLAYING, "Shobai shuor");
         Bot.updateStatus(UserStatus.IDLE);
 
 
@@ -79,6 +79,7 @@ public class JavaCordBot {
         Bot.addListener(new boorusearch());
         Bot.addListener(new nhentaitest());
         Bot.addListener(new ResponseTest());
+        Bot.addListener(new aatTola());
 
         //banking
 //        Bot.addListener(new Balanceadd());
