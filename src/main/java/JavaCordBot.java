@@ -13,6 +13,7 @@ import Commands.APIcommands.NekoLife.NekosDotLifeSFW;
 import Commands.APIcommands.NekoLife.nsfwNekoLIfeMentions;
 import Commands.APIcommands.booru.boorusearch;
 import Commands.APIcommands.nhentai.ResponseTest;
+import Commands.APIcommands.nhentai.nQuery;
 import Commands.admins.Help;
 import Commands.admins.dlt;
 import Commands.admins.kick;
@@ -80,6 +81,7 @@ public class JavaCordBot {
         Bot.addListener(new nhentaitest());
         Bot.addListener(new ResponseTest());
         Bot.addListener(new aatTola());
+        Bot.addListener(new nQuery());
 
         //banking
 //        Bot.addListener(new Balanceadd());

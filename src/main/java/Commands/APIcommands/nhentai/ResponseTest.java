@@ -106,12 +106,9 @@ public class ResponseTest implements MessageCreateListener {
                             reactionremove.editMessage(
                                     pages.get(pageno).getImage().getDownloadUrl()+" \n*Page: "+pageno+" out of "+ pages.size()+"* \n");
 
-
-
-
                         }
                     }
-                }).removeAfter(30, TimeUnit.MINUTES);
+                }).removeAfter(120, TimeUnit.MINUTES);
 
                 message.edit("Response OK...");
 

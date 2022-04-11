@@ -19,10 +19,18 @@ public class aatTola implements MessageCreateListener {
         System.out.println("mentioned id: " + mentionID);
 
         if (farhanerID == Long.parseLong("461021332491075585") || mentionID==Long.parseLong("461021332491075585")){
-            System.out.println("number matched");
+            System.out.println("number matched faran");
             event.getMessage().addReaction("\uD83C\uDFE2");
-        } else {
-            System.out.println("didnt");
+        } else if (farhanerID == 527751947462115350l || mentionID==527751947462115350l){
+            System.out.println("number matched..shoreph");
+            event.getMessage().addReaction("\uD83D\uDE97");
+
+        }else if (farhanerID == 739720998672269323l || mentionID==739720998672269323l){
+            System.out.println("number matched..rakibol");
+            event.getMessage().addReaction("\uD83E\uDDE0");
+        }
+        else {
+            System.out.println("milenai");
         }
 
     }
