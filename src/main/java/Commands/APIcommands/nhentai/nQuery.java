@@ -35,25 +35,34 @@ public class nQuery implements MessageCreateListener {
 
             ArrayList<String> Title = new ArrayList<>();
             ArrayList<String> Codes = new ArrayList<>();
+            ArrayList<String> ThumbnailURL = new ArrayList<>();
+            ArrayList<String> NumOfPages = new ArrayList<>();
+            ArrayList<String> Favs = new ArrayList<>();
+            ArrayList<String> Uploaded = new ArrayList<>();
 
-            for (int i=0; i<result.getGalleries().size();i++) {
-                Title.add(result.getGalleries().get(i).getEnglishTitle());
-                Codes.add(String.valueOf(result.getGalleries().get(i).getId()));
+            int pageNo = 1;
+            for (int i=0; i<result.getGalleriesOnPage(pageNo).size();i++) {
+                Title.add(result.getGalleriesOnPage(pageNo).get(i).getEnglishTitle());
+                Codes.add(String.valueOf(result.getGalleriesOnPage(pageNo).get(i).getId()));
+                ThumbnailURL.add(result.getGalleriesOnPage(pageNo).get(i).getThumbnail().getDownloadUrl());
+                NumOfPages.add(String.valueOf(result.getGalleriesOnPage(pageNo).get(i).getPages().size()));
+                Favs.add(String.valueOf(result.getGalleriesOnPage(pageNo).get(i).getNumberOfFavorites()));
+                Uploaded.add(result.getGalleriesOnPage(pageNo).get(i).getUploadDate().toString());
 
-                System.out.println(result.getGalleries().get(i).getEnglishTitle() + "\n" +
+                System.out.println(result.getGalleriesOnPage(pageNo).get(i).getEnglishTitle() + "\n" +
                         result.getGalleries().get(i).getId() + "\n");
 
             }
-            System.out.println(result.getGalleries().size()+" results found");
-            if (result.getGalleries().isEmpty()){
+            System.out.println(result.getGalleriesOnPage(pageNo).size()+" results found");
+            if (result.getGalleriesOnPage(pageNo).isEmpty()){
                 System.out.println("no result found");
             }
 
             int num = 0;
             AtomicReference<AtomicInteger> j = new AtomicReference<>(new AtomicInteger());
-            String tggg= result.getGalleries().get(num).getTags().get(0).getName()+", ";
-            for (int i=0;i<result.getGalleries().get(num).getTags().size();i++){
-                tggg=tggg+result.getGalleries().get(num).getTags().get(i).getName()+", ";
+            String tggg= result.getGalleriesOnPage(pageNo).get(num).getTags().get(0).getName()+", ";
+            for (int i=0;i<result.getGalleriesOnPage(pageNo).get(num).getTags().size();i++){
+                tggg=tggg+result.getGalleriesOnPage(pageNo).get(num).getTags().get(i).getName()+", ";
             }
             String finalTggg = tggg;
             SearchResult finalResult = result;
@@ -61,13 +70,13 @@ public class nQuery implements MessageCreateListener {
             SearchResult finalResult2 = result;
             SearchResult finalResult3 = result;
             new MessageBuilder().setEmbeds(new EmbedBuilder()
-                    .setTitle(result.getGalleries().get(num).getEnglishTitle())
-                    .setThumbnail(result.getGalleries().get(num).getThumbnail().getDownloadUrl())
+                    .setTitle(Title.get(num))
+                    .setThumbnail(ThumbnailURL.get(num))
                     .addField("Code","**"+Codes.get(num)+"**")
                     .addField("Tags",tggg)
-                    .addField("Number of pages", String.valueOf(result.getGalleries().get(num).getPages().size()))
-                    .addField("Favorites", String.valueOf(result.getGalleries().get(num).getNumberOfFavorites()))
-                    .addField("Uploaded",result.getGalleries().get(num).getUploadDate().toString())
+                    .addField("Number of pages", NumOfPages.get(num))
+                    .addField("Favorites", Favs.get(num))
+                    .addField("Uploaded",Uploaded.get(num))
                     .setColor(Color.BLACK)).send(event.getChannel()).thenAccept(message1 -> {
                 message1.addReaction("\u2B05\uFE0F");
                 message1.addReaction("\u27A1\uFE0F");
@@ -83,13 +92,13 @@ public class nQuery implements MessageCreateListener {
                             tago=tago+ finalResult.getGalleries().get(k).getTags().get(i).getName()+", ";
                         }
                         message1.edit(new EmbedBuilder()
-                                .setTitle(finalResult.getGalleries().get(k).getEnglishTitle())
-                                .setThumbnail(finalResult.getGalleries().get(k).getThumbnail().getDownloadUrl())
+                                .setTitle(Title.get(k))
+                                .setThumbnail(ThumbnailURL.get(k))
                                 .addField("Code","**"+Codes.get(k)+"**")
-                                .addField("Tags", tago)
-                                .addField("Number of pages", String.valueOf(finalResult.getGalleries().get(k).getPages().size()))
-                                .addField("Favorites", String.valueOf(finalResult.getGalleries().get(k).getNumberOfFavorites()))
-                                .addField("Uploaded", finalResult.getGalleries().get(k).getUploadDate().toString())
+                                .addField("Tags",tago)
+                                .addField("Number of pages", NumOfPages.get(k))
+                                .addField("Favorites", Favs.get(k))
+                                .addField("Uploaded",Uploaded.get(k))
                                 .setColor(Color.BLACK));
                     }
                 });
@@ -103,13 +112,13 @@ public class nQuery implements MessageCreateListener {
                             tago=tago+ finalResult1.getGalleries().get(k).getTags().get(i).getName()+", ";
                         }
                         message1.edit(new EmbedBuilder()
-                                .setTitle(finalResult1.getGalleries().get(k).getEnglishTitle())
-                                .setThumbnail(finalResult1.getGalleries().get(k).getThumbnail().getDownloadUrl())
+                                .setTitle(Title.get(k))
+                                .setThumbnail(ThumbnailURL.get(k))
                                 .addField("Code","**"+Codes.get(k)+"**")
-                                .addField("Tags", tago)
-                                .addField("Number of pages", String.valueOf(finalResult1.getGalleries().get(k).getPages().size()))
-                                .addField("Favorites", String.valueOf(finalResult1.getGalleries().get(k).getNumberOfFavorites()))
-                                .addField("Uploaded", finalResult1.getGalleries().get(k).getUploadDate().toString())
+                                .addField("Tags",tago)
+                                .addField("Number of pages", NumOfPages.get(k))
+                                .addField("Favorites", Favs.get(k))
+                                .addField("Uploaded",Uploaded.get(k))
                                 .setColor(Color.BLACK));
                     }
                 });
@@ -122,13 +131,13 @@ public class nQuery implements MessageCreateListener {
                             tago=tago+ finalResult2.getGalleries().get(k).getTags().get(i).getName()+", ";
                         }
                         message1.edit(new EmbedBuilder()
-                                .setTitle(finalResult2.getGalleries().get(k).getEnglishTitle())
-                                .setThumbnail(finalResult2.getGalleries().get(k).getThumbnail().getDownloadUrl())
+                                .setTitle(Title.get(k))
+                                .setThumbnail(ThumbnailURL.get(k))
                                 .addField("Code","**"+Codes.get(k)+"**")
-                                .addField("Tags", tago)
-                                .addField("Number of pages", String.valueOf(finalResult2.getGalleries().get(k).getPages().size()))
-                                .addField("Favorites", String.valueOf(finalResult2.getGalleries().get(k).getNumberOfFavorites()))
-                                .addField("Uploaded", finalResult2.getGalleries().get(k).getUploadDate().toString())
+                                .addField("Tags",tago)
+                                .addField("Number of pages", NumOfPages.get(k))
+                                .addField("Favorites", Favs.get(k))
+                                .addField("Uploaded",Uploaded.get(k))
                                 .setColor(Color.BLACK));
                     }
                 });
@@ -141,13 +150,13 @@ public class nQuery implements MessageCreateListener {
                             tago=tago+ finalResult3.getGalleries().get(k).getTags().get(i).getName()+", ";
                         }
                         message1.edit(new EmbedBuilder()
-                                .setTitle(finalResult3.getGalleries().get(k).getEnglishTitle())
-                                .setThumbnail(finalResult3.getGalleries().get(k).getThumbnail().getDownloadUrl())
+                                .setTitle(Title.get(k))
+                                .setThumbnail(ThumbnailURL.get(k))
                                 .addField("Code","**"+Codes.get(k)+"**")
-                                .addField("Tags", tago)
-                                .addField("Number of pages", String.valueOf(finalResult3.getGalleries().get(k).getPages().size()))
-                                .addField("Favorites", String.valueOf(finalResult3.getGalleries().get(k).getNumberOfFavorites()))
-                                .addField("Uploaded", finalResult3.getGalleries().get(k).getUploadDate().toString())
+                                .addField("Tags",tago)
+                                .addField("Number of pages", NumOfPages.get(k))
+                                .addField("Favorites", Favs.get(k))
+                                .addField("Uploaded",Uploaded.get(k))
                                 .setColor(Color.BLACK));
                     }
                 });
