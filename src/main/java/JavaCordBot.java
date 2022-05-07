@@ -44,7 +44,7 @@ public class JavaCordBot {
 //                .setToken("OTI0NTc4NzcwNzg1MDEzODAw.YcgnFA.3M_UyiMaeQQIRV7JCnIciqQS6rs")
         .login().join();
 
-        Bot.updateActivity(ActivityType.PLAYING, "Shobai shuor");
+        Bot.updateActivity(ActivityType.PLAYING, "us");
         Bot.updateStatus(UserStatus.IDLE);
 
 
