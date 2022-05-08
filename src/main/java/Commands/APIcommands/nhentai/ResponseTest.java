@@ -35,15 +35,15 @@ public class ResponseTest implements MessageCreateListener {
 
 
             event.getChannel().sendMessage("Checking connection....\nhttps://media4.giphy.com/media/g7GKcSzwQfugw/giphy.gif").thenAccept(message -> {
-                message.addReaction("\uD83D\uDC48");
-                message.addReaction("\uD83D\uDC49");
+                message.addReaction("\u2B05\uFE0F");
+                message.addReaction("\u27A1\uFE0F");
 
 
                 // Attach a listener directly to the message
 
                 message.addReactionAddListener(reactionEvent -> {
                     int count = 0;
-                        if (reactionEvent.getEmoji().equalsEmoji("\uD83D\uDC49")) {
+                        if (reactionEvent.getEmoji().equalsEmoji("\u27A1\uFE0F")) {
                             i.get().getAndIncrement();
 //                            reactionEvent.editMessage("Counting -- " + i);
 
@@ -61,7 +61,7 @@ public class ResponseTest implements MessageCreateListener {
 
 
                 message.addReactionRemoveListener(reactionremove -> {
-                   if (reactionremove.getEmoji().equalsEmoji("\uD83D\uDC49")){
+                   if (reactionremove.getEmoji().equalsEmoji("\u27A1\uFE0F")){
                        int count  = reactionremove.getCount().get();
                        if (count<2){
                            i.get().getAndIncrement();
@@ -80,7 +80,7 @@ public class ResponseTest implements MessageCreateListener {
 
                 message.addReactionAddListener(reactionEvent -> {
                     int count = 0;
-                    if (reactionEvent.getEmoji().equalsEmoji("\uD83D\uDC48")) {
+                    if (reactionEvent.getEmoji().equalsEmoji("\u2B05\uFE0F")) {
                         i.get().getAndDecrement();
 //                        reactionEvent.editMessage("Counting -- " + i);
                         int pageno = i.get().get();
@@ -96,7 +96,7 @@ public class ResponseTest implements MessageCreateListener {
                 }).removeAfter(30, TimeUnit.MINUTES);
 
                 message.addReactionRemoveListener(reactionremove -> {
-                    if (reactionremove.getEmoji().equalsEmoji("\uD83D\uDC48")){
+                    if (reactionremove.getEmoji().equalsEmoji("\u2B05\uFE0F")){
                         int count  = reactionremove.getCount().get();
                         if (count<2){
                             i.get().getAndDecrement();
