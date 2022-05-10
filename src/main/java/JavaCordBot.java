@@ -96,12 +96,12 @@ public class JavaCordBot {
 
         //Slash Commands
         SlashCommand.with("ping", "Replies with pong!")
-                .createForServer(Bot.getServerById(929225438700638259L).get())
+                .createGlobal(Bot)
                 .join();
         Bot.addListener(new slashPing());
 
         SlashCommand.with("play_with_buttons", "play with buttons haha")
-                .createForServer(Bot.getServerById(929225438700638259L).get())
+                .createGlobal(Bot)
                 .join();
         Bot.addListener(new slashPlayWithButtons());
 
