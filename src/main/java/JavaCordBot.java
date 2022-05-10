@@ -1,11 +1,8 @@
 
 
-import Banking.sql.Balanceadd;
-import Banking.sql.MoneyDistribute;
 import Banking.sql.postgress.AcCreate;
 import Banking.sql.postgress.BalAdd;
 import Banking.sql.postgress.CheckBal;
-import Banking.sql.robbing;
 import Commands.APIcommands.*;
 import Commands.APIcommands.NekoLife.NekoHelp;
 import Commands.APIcommands.NekoLife.NekoLifeMention;
@@ -24,11 +21,14 @@ import Commands.domath.DoMath;
 import Commands.Reader.Reader;
 
 import Commands.funCommands.*;
+import Commands.interactions.slashPing;
+import Commands.interactions.slashPlayWithButtons;
 import notForPublic.*;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
 import org.javacord.api.entity.activity.ActivityType;
 import org.javacord.api.entity.user.UserStatus;
+import org.javacord.api.interaction.SlashCommand;
 
 
 public class JavaCordBot {
@@ -92,6 +92,19 @@ public class JavaCordBot {
         Bot.addListener(new AcCreate());
         Bot.addListener(new CheckBal());
         Bot.addListener(new BalAdd());
+
+
+        //Slash Commands
+        SlashCommand.with("ping", "Replies with pong!")
+                .createForServer(Bot.getServerById(929225438700638259L).get())
+                .join();
+        Bot.addListener(new slashPing());
+
+        SlashCommand.with("play_with_buttons", "play with buttons haha")
+                .createForServer(Bot.getServerById(929225438700638259L).get())
+                .join();
+        Bot.addListener(new slashPlayWithButtons());
+
 
 
         System.out.println("Bot is online! Owner:Md_kaif#3392");
