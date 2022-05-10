@@ -15,6 +15,20 @@ public class slashPlayWithButtons implements SlashCommandCreateListener {
     @Override
     public void onSlashCommandCreate(SlashCommandCreateEvent event) {
         if (event.getSlashCommandInteraction().getCommandName().equalsIgnoreCase("play_with_buttons")){
+            new MessageBuilder()
+                    .setContent("Click me please...")
+                    .addComponents(ActionRow.of(
+                            Button.create("show_my_avatar", ButtonStyle.PRIMARY,"Show my avatar"),
+                            Button.create("show_your_avatar",ButtonStyle.PRIMARY,"Show your avatar"),
+                            Button.create("this_is_disabled_button_test",ButtonStyle.PRIMARY,"Click",true)
+                    )).send(event.getInteraction().getChannel().get()).thenAccept(message -> {
+                        message.createUpdater().removeAllComponents().addActionRow(
+                                Button.create("show_my_avatar", ButtonStyle.PRIMARY,"us"),
+                                Button.create("show_your_avatar",ButtonStyle.PRIMARY,"trma"),
+                                Button.create("this_is_disabled_button_test",ButtonStyle.PRIMARY,"chudi",true)
+                        ).applyChanges();
+                    });
+
             event.getInteraction()
                     .createImmediateResponder()
                     .setContent("Click me please...")
@@ -36,7 +50,11 @@ public class slashPlayWithButtons implements SlashCommandCreateListener {
                                                 Button.create("this_is_disabled_button_test",ButtonStyle.PRIMARY,"Mah",true)
                                         );
                             try {
-                                res.update().get().edit(avatarURL);
+                                res.update().get().createUpdater().removeAllComponents().addActionRow(
+                                        Button.create("show_my_avatar", ButtonStyle.PRIMARY,"Show my avatar"),
+                                        Button.create("show_your_avatar",ButtonStyle.PRIMARY,"Show your avatar"),
+                                        Button.create("this_is_disabled_button_test",ButtonStyle.PRIMARY,"Mah",true)
+                                ).applyChanges();
                             } catch (InterruptedException | ExecutionException e) {
                                 throw new RuntimeException(e);
                             }
