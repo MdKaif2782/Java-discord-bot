@@ -27,7 +27,7 @@ public class slashPlayWithButtons implements SlashCommandCreateListener {
                         String customID = button.getButtonInteraction().getCustomId();
                         if (customID.equalsIgnoreCase("show_my_avatar")){
                             String avatarURL = event.getInteraction().getUser().getAvatar(1024).getUrl().toString();
-                            try {
+
                                 MessageBuilder mes = new MessageBuilder()
                                         .setContent(avatarURL)
                                         .addActionRow(
@@ -35,11 +35,13 @@ public class slashPlayWithButtons implements SlashCommandCreateListener {
                                                 Button.create("show_your_avatar",ButtonStyle.PRIMARY,"Show your avatar"),
                                                 Button.create("this_is_disabled_button_test",ButtonStyle.PRIMARY,"Mah",true)
                                         );
+                            try {
                                 res.update().get().edit(avatarURL);
-
                             } catch (InterruptedException | ExecutionException e) {
                                 throw new RuntimeException(e);
                             }
+
+
                         } else if (customID.equalsIgnoreCase("show_your_avatar")){
                             String avatarURL = event.getApi().getYourself().getAvatar(1024).getUrl().toString();
                             try {
@@ -49,7 +51,7 @@ public class slashPlayWithButtons implements SlashCommandCreateListener {
                             }
                         }
                     }));
-        }
+        };
 
 
     }
