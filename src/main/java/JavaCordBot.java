@@ -29,6 +29,8 @@ import org.javacord.api.DiscordApiBuilder;
 import org.javacord.api.entity.activity.ActivityType;
 import org.javacord.api.entity.user.UserStatus;
 import org.javacord.api.interaction.SlashCommand;
+import org.javacord.api.interaction.SlashCommandOption;
+import org.javacord.api.listener.interaction.SlashCommandCreateListener;
 
 
 public class JavaCordBot {
@@ -105,6 +107,10 @@ public class JavaCordBot {
                 .join();
         Bot.addListener(new slashPlayWithButtons());
 
+        SlashCommand.with("nhentai","Read doujins here!")
+                .addOption(SlashCommandOption.createDecimalOption("code","provide the doujin code",true))
+                .createGlobal(Bot)
+                .join();
 
 
         System.out.println("Bot is online! Owner:Md_kaif#3392");
