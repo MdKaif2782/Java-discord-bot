@@ -8,7 +8,7 @@ public class slashPing implements SlashCommandCreateListener {
     public void onSlashCommandCreate(SlashCommandCreateEvent event) {
         String interaction = event.getSlashCommandInteraction().getCommandName();
         if (interaction.equalsIgnoreCase("ping")){
-            event.getInteraction().createImmediateResponder().setContent("trma e re chudi").respond();
+            event.getInteraction().createImmediateResponder().setContent("Pong!").respond();
         }
     }
 }

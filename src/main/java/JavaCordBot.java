@@ -28,9 +28,13 @@ import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
 import org.javacord.api.entity.activity.ActivityType;
 import org.javacord.api.entity.user.UserStatus;
-import org.javacord.api.interaction.SlashCommand;
-import org.javacord.api.interaction.SlashCommandOption;
+import org.javacord.api.interaction.*;
 import org.javacord.api.listener.interaction.SlashCommandCreateListener;
+
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 
 public class JavaCordBot {
@@ -110,6 +114,14 @@ public class JavaCordBot {
         SlashCommand.with("nhentai","Read doujins here!")
                 .addOption(SlashCommandOption.createDecimalOption("code","provide the doujin code",true))
                 .createGlobal(Bot)
+                .join();
+        SlashCommand.with("booru","Get image from Danbooru")
+                .addOption(SlashCommandOption.createWithChoices(SlashCommandOptionType.STRING,"option","sdsadsa",false,new SlashCommandOptionChoiceBuilder()
+                        .setName("choice1")
+                        .setValue("6545645654"),new SlashCommandOptionChoiceBuilder()
+                        .setName("choice2")
+                        .setValue("6545645654")))
+                .createForServer(Bot.getServerById(929225438700638259L).get())
                 .join();
 
 
