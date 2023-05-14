@@ -11,12 +11,15 @@ import Commands.APIcommands.NekoLife.nsfwNekoLIfeMentions;
 import Commands.APIcommands.booru.boorusearch;
 import Commands.APIcommands.nhentai.ResponseTest;
 import Commands.APIcommands.nhentai.nQuery;
+import Commands.Tashdid.ChopKala;
+import Commands.Tashdid.TashdidKalaImage;
 import Commands.admins.Help;
 import Commands.admins.dlt;
 import Commands.admins.kick;
 import Commands.admins.msgdelete;
 import Commands.baiscCommands.PingPong;
 import Commands.baiscCommands.Rate;
+import Commands.baiscCommands.TashdidKala;
 import Commands.domath.DoMath;
 import Commands.Reader.Reader;
 
@@ -88,16 +91,20 @@ public class JavaCordBot {
         Bot.addListener(new ResponseTest());
         Bot.addListener(new aatTola());
         Bot.addListener(new nQuery());
+        Bot.addListener(new TashdidKala());
+        Bot.addListener(new TashdidKalaImage());
+        Bot.addListener(new ChopKala());
+        Bot.addListener(new chatgpt());
 
         //banking
 //        Bot.addListener(new Balanceadd());
 //        Bot.addListener(new robbing());
 //        Bot.addListener(new MoneyDistribute());
 
-        //postgres bankking
-        Bot.addListener(new AcCreate());
-        Bot.addListener(new CheckBal());
-        Bot.addListener(new BalAdd());
+//        //postgres bankking
+//        Bot.addListener(new AcCreate());
+//        Bot.addListener(new CheckBal());
+//        Bot.addListener(new BalAdd());
 
 
         //Slash Commands
@@ -115,6 +122,7 @@ public class JavaCordBot {
                 .addOption(SlashCommandOption.createDecimalOption("code","provide the doujin code",true))
                 .createGlobal(Bot)
                 .join();
+
         SlashCommand.with("booru","Get image from Danbooru")
                 .addOption(SlashCommandOption.createWithChoices(SlashCommandOptionType.STRING,"option","sdsadsa",false,new SlashCommandOptionChoiceBuilder()
                         .setName("choice1")
