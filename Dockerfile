@@ -4,6 +4,6 @@ RUN apt-get install openjdk-17-jdk -y
 RUN ./gradlew shadowJar
 FROM openjdk:17-jdk-slim
 
-COPY build/libs/JavaCordBot-1.0-all.jar app.jar
+COPY --from=build /build/libs/JavaCordBot-1.0-all.jar app.jar
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
