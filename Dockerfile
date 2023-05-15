@@ -13,9 +13,7 @@ COPY . .
 
 RUN chmod +x gradlew && \
     ./gradlew shadowJar
-    
+
 FROM openjdk:17-jdk-slim
 
-COPY --from=build /build/libs/JavaCordBot-1.0-all.jar app.jar
-
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "/app/build/libs/JavaCordBot-1.0-all.jar"]
