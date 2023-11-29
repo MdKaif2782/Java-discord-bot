@@ -44,6 +44,11 @@ public class JavaCordBot {
 
 
     public static void main(String[] args) {
+        System.setProperty("java.awt.headless", "false");
+        System.setProperty("awt.useSystemAAFontSettings", "on");
+        System.setProperty("swing.aatext", "true");
+        System.setProperty("sun.java2d.xrender", "true");
+
 
         String token1 = "OTI0NjA4NDc0NDA5NzQyMzU3.";
         String token2 = "YchCvg.A0s-BnJ5_XmULW2GwyAj6mpY058";

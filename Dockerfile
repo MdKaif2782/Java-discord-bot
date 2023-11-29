@@ -5,8 +5,19 @@ RUN apt-get update && \
     apt-get install -y wget unzip && \
     wget https://services.gradle.org/distributions/gradle-7.2-bin.zip && \
     unzip -d /opt/gradle gradle-7.2-bin.zip && \
-    export PATH=$PATH:/opt/gradle/gradle-7.2/bin
+    export PATH=$PATH:/opt/gradle/gradle-7.2/bin \
 
+# Install X11 dependencies
+RUN apt-get install -y \
+    x11-apps \
+    xauth \
+    xorg
+
+# Set the DISPLAY environment variable
+ENV DISPLAY=:0
+
+# Additional configuration for X11 forwarding
+RUN echo "X11Forwarding yes" >> /etc/ssh/sshd_config
 WORKDIR /app
 
 COPY . .
