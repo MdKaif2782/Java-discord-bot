@@ -5,10 +5,8 @@ RUN apt-get update && \
     apt-get install -y wget unzip && \
     wget https://services.gradle.org/distributions/gradle-7.2-bin.zip && \
     unzip -d /opt/gradle gradle-7.2-bin.zip && \
-    export PATH=$PATH:/opt/gradle/gradle-7.2/bin \
-
-# Install X11 dependencies
-RUN apt-get install -y \
+    export PATH=$PATH:/opt/gradle/gradle-7.2/bin && \
+    apt-get install -y \
     x11-apps \
     xauth \
     xorg
@@ -24,7 +22,7 @@ COPY . .
 
 RUN chmod +x gradlew && \
     ./gradlew shadowJar
-    
+
 FROM openjdk:17-jdk-slim
 
 COPY --from=build /app/build/libs/JavaCordBot-1.0-all.jar app.jar
