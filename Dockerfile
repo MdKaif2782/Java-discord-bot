@@ -1,5 +1,6 @@
 FROM ubuntu:latest AS build
 ENV DEBIAN_FRONTEND=noninteractive
+
 RUN apt-get update
 RUN apt-get install openjdk-17-jdk -y
 RUN apt-get update && \
@@ -16,7 +17,9 @@ RUN apt-get update && \
 ENV DISPLAY=:0
 
 # Additional configuration for X11 forwarding
-RUN echo "X11Forwarding yes" >> /etc/ssh/sshd_config
+RUN mkdir -p /etc/ssh && \
+    echo "X11Forwarding yes" >> /etc/ssh/sshd_config
+
 WORKDIR /app
 
 COPY . .
