@@ -27,7 +27,7 @@ COPY . .
 RUN chmod +x gradlew && \
     ./gradlew shadowJar
 
-FROM openjdk:17-jdk-slim
+#FROM openjdk:17-jdk-slim
 
 COPY --from=build /app/build/libs/JavaCordBot-1.0-all.jar app.jar
 EXPOSE 3000
