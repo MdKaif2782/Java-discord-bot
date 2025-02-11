@@ -26,6 +26,7 @@ import Commands.Reader.Reader;
 import Commands.funCommands.*;
 import Commands.interactions.slashPing;
 import Commands.interactions.slashPlayWithButtons;
+import com.sun.net.httpserver.HttpServer;
 import notForPublic.*;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
@@ -34,6 +35,9 @@ import org.javacord.api.entity.user.UserStatus;
 import org.javacord.api.interaction.*;
 import org.javacord.api.listener.interaction.SlashCommandCreateListener;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.InetSocketAddress;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -44,6 +48,7 @@ public class JavaCordBot {
 
 
     public static void main(String[] args) {
+        startHttpServer();
         System.setProperty("java.awt.headless", "false");
         System.setProperty("awt.useSystemAAFontSettings", "on");
         System.setProperty("swing.aatext", "true");
@@ -139,5 +144,23 @@ public class JavaCordBot {
 
 
         System.out.println("Bot is online! Owner:Md_kaif#3392");
+    }
+
+    private static void startHttpServer() {
+        try {
+            HttpServer server = HttpServer.create(new InetSocketAddress(3000), 0);
+            server.createContext("/", exchange -> {
+                String response = "Bot is running!";
+                exchange.sendResponseHeaders(200, response.length());
+                OutputStream os = exchange.getResponseBody();
+                os.write(response.getBytes());
+                os.close();
+            });
+            server.setExecutor(null); // creates a default executor
+            server.start();
+            System.out.println("HTTP server started on port 3000");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
